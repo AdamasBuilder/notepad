@@ -1,113 +1,789 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Il Mio Diario To-Do</title>
-    <style>
-        :root { --primary: #6c5ce7; --bg: #f0f2f5; --text: #2d3436; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg); color: var(--text); display: flex; justify-content: center; padding: 40px 20px; }
-        .container { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 450px; }
-        h2 { text-align: center; margin-bottom: 1.5rem; color: var(--primary); }
-        
-        .input-group { display: flex; gap: 10px; margin-bottom: 20px; }
-        input[type="text"] { flex-grow: 1; padding: 12px; border: 2px solid #dfe6e9; border-radius: 8px; outline: none; transition: border-color 0.3s; }
-        input[type="text"]:focus { border-color: var(--primary); }
-        
-        button#add-btn { padding: 10px 18px; background-color: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
-        button#add-btn:hover { opacity: 0.9; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>36 Giorni — Il Lavoro</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
 
-        ul { list-style: none; padding: 0; }
-        li { background: #fff; border: 1px solid #eee; margin-bottom: 8px; padding: 12px; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; animation: fadeIn 0.3s ease; }
-        
-        .todo-content { display: flex; align-items: center; gap: 12px; flex-grow: 1; }
-        input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; }
-        .checked { text-decoration: line-through; color: #b2bec3; }
-        
-        .delete-btn { color: #ff7675; cursor: pointer; font-size: 0.9rem; margin-left: 10px; border: none; background: none; }
-        
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-    </style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #141414;
+    --surface2: #1a1a1a;
+    --border: #2a2a2a;
+    --text: #e0d8cc;
+    --text-dim: #7a7468;
+    --accent: #c4922a;
+    --accent-dim: #8a6a2a;
+    --red: #8b3a3a;
+    --green: #3a6b3a;
+    --green-bright: #5a9b5a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    padding: 40px 20px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2em;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 5px;
+  }
+
+  .header .subtitle {
+    font-size: 0.85em;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  /* PROGRESS */
+  .progress-section {
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .progress-bar-container {
+    background: var(--surface);
+    border-radius: 4px;
+    height: 8px;
+    overflow: hidden;
+    margin: 10px 0;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-dim), var(--accent));
+    transition: width 0.5s ease;
+    border-radius: 4px;
+  }
+
+  .progress-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75em;
+    color: var(--text-dim);
+  }
+
+  .streak-display {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 0.85em;
+  }
+
+  .streak-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2em;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* NAV TABS */
+  .nav-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+  }
+
+  .nav-tab {
+    flex: 1;
+    min-width: 80px;
+    padding: 12px 8px;
+    text-align: center;
+    font-size: 0.75em;
+    color: var(--text-dim);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .nav-tab:hover { color: var(--text); }
+  .nav-tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* MAIN CONTENT */
+  .main-content {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 20px 100px;
+  }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* CYCLE HEADER */
+  .cycle-header {
+    padding: 25px 0 15px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+  }
+
+  .cycle-label {
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 5px;
+  }
+
+  .cycle-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5em;
+    font-weight: 600;
+  }
+
+  .cycle-desc {
+    font-size: 0.85em;
+    color: var(--text-dim);
+    margin-top: 5px;
+    font-style: italic;
+  }
+
+  /* DAY CARD */
+  .day-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .day-card.completed {
+    border-color: var(--green);
+    opacity: 0.7;
+  }
+
+  .day-card.today {
+    border-color: var(--accent);
+    box-shadow: 0 0 20px rgba(196, 146, 42, 0.1);
+  }
+
+  .day-card.locked {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .day-header {
+    padding: 15px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .day-header:hover { background: var(--surface2); }
+
+  .day-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--accent);
+    width: 50px;
+  }
+
+  .day-title-area { flex: 1; margin-left: 15px; }
+
+  .day-name {
+    font-size: 0.95em;
+    font-weight: 500;
+  }
+
+  .day-subtitle {
+    font-size: 0.75em;
+    color: var(--text-dim);
+    margin-top: 2px;
+  }
+
+  .day-status {
+    font-size: 1.2em;
+    width: 30px;
+    text-align: center;
+  }
+
+  .day-body {
+    display: none;
+    padding: 0 20px 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .day-body.open { display: block; }
+
+  /* TASK BLOCKS */
+  .task-block {
+    margin: 15px 0;
+    padding: 15px;
+    background: var(--bg);
+    border-radius: 6px;
+    border-left: 3px solid var(--accent-dim);
+  }
+
+  .task-time {
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+
+  .task-title {
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 0.95em;
+  }
+
+  .task-desc {
+    font-size: 0.85em;
+    color: var(--text-dim);
+    line-height: 1.8;
+  }
+
+  .task-desc strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .task-desc em {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  /* CHECKLIST */
+  .checklist { margin-top: 15px; }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 8px 0;
+    cursor: pointer;
+    gap: 10px;
+  }
+
+  .check-box {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+    transition: all 0.2s;
+    font-size: 0.75em;
+  }
+
+  .check-item.checked .check-box {
+    background: var(--green);
+    border-color: var(--green-bright);
+  }
+
+  .check-label {
+    font-size: 0.85em;
+    line-height: 1.5;
+  }
+
+  .check-item.checked .check-label {
+    text-decoration: line-through;
+    color: var(--text-dim);
+  }
+
+  /* JOURNAL */
+  .journal-section {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border);
+  }
+
+  .journal-label {
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .journal-textarea {
+    width: 100%;
+    min-height: 100px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85em;
+    line-height: 1.7;
+    resize: vertical;
+  }
+
+  .journal-textarea:focus {
+    outline: none;
+    border-color: var(--accent-dim);
+  }
+
+  .journal-prompt {
+    font-size: 0.8em;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+
+  /* COMPLETE BUTTON */
+  .complete-btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin-top: 20px;
+    background: var(--accent-dim);
+    color: var(--text);
+    border: none;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9em;
+    font-weight: 500;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s;
+  }
+
+  .complete-btn:hover { background: var(--accent); color: var(--bg); }
+  .complete-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+  .complete-btn.done {
+    background: var(--green);
+    cursor: default;
+  }
+
+  /* GURDJIEFF CHAT */
+  .chat-container {
+    padding-top: 20px;
+  }
+
+  .chat-intro {
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.85em;
+    line-height: 1.8;
+  }
+
+  .chat-intro h3 {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .api-key-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+
+  .api-key-input {
+    width: 100%;
+    padding: 10px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85em;
+    margin-top: 8px;
+  }
+
+  .api-key-input:focus {
+    outline: none;
+    border-color: var(--accent-dim);
+  }
+
+  .chat-messages {
+    max-height: 500px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    padding: 10px 0;
+  }
+
+  .chat-msg {
+    margin-bottom: 15px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 0.85em;
+    line-height: 1.7;
+  }
+
+  .chat-msg.user {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    margin-left: 30px;
+  }
+
+  .chat-msg.ai {
+    background: var(--surface);
+    border: 1px solid var(--accent-dim);
+    border-left: 3px solid var(--accent);
+    margin-right: 30px;
+  }
+
+  .chat-msg .msg-label {
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 5px;
+  }
+
+  .chat-input-area {
+    display: flex;
+    gap: 10px;
+  }
+
+  .chat-input {
+    flex: 1;
+    padding: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85em;
+    resize: none;
+    min-height: 50px;
+  }
+
+  .chat-input:focus {
+    outline: none;
+    border-color: var(--accent-dim);
+  }
+
+  .chat-send {
+    padding: 12px 20px;
+    background: var(--accent-dim);
+    color: var(--text);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.85em;
+    transition: all 0.3s;
+    align-self: flex-end;
+  }
+
+  .chat-send:hover { background: var(--accent); color: var(--bg); }
+  .chat-send:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  /* RECAP TAB */
+  .recap-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+  }
+
+  .recap-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 15px;
+  }
+
+  .stat-item {
+    background: var(--bg);
+    padding: 15px;
+    border-radius: 6px;
+    text-align: center;
+  }
+
+  .stat-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .stat-label {
+    font-size: 0.7em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 5px;
+  }
+
+  /* QUOTE */
+  .daily-quote {
+    padding: 20px;
+    margin: 20px 0;
+    border-left: 3px solid var(--accent);
+    background: var(--surface);
+    border-radius: 0 8px 8px 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1em;
+    font-style: italic;
+    line-height: 1.8;
+  }
+
+  .quote-author {
+    font-size: 0.75em;
+    color: var(--accent);
+    margin-top: 10px;
+    font-style: normal;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* RESET */
+  .reset-section {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .reset-btn {
+    padding: 8px 20px;
+    background: transparent;
+    color: var(--red);
+    border: 1px solid var(--red);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .reset-btn:hover { background: var(--red); color: var(--text); }
+
+  /* LOADING */
+  .loading-dots::after {
+    content: '';
+    animation: dots 1.5s infinite;
+  }
+  @keyframes dots {
+    0%, 20% { content: '.'; }
+    40% { content: '..'; }
+    60%, 100% { content: '...'; }
+  }
+
+  /* SCROLL */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 600px) {
+    .header h1 { font-size: 1.5em; }
+    .stat-grid { grid-template-columns: 1fr; }
+    .chat-msg.user { margin-left: 10px; }
+    .chat-msg.ai { margin-right: 10px; }
+  }
+</style>
 </head>
 <body>
 
-<div class="container">
-    <h2>📓 Diario Attività</h2>
-    
-    <div class="input-group">
-        <input type="text" id="todo-input" placeholder="Cosa devi fare oggi?">
-        <button id="add-btn">Aggiungi</button>
+<div class="header">
+  <h1>I 36 Giorni</h1>
+  <div class="subtitle">Manuale spietato per il risveglio dell'uomo-macchina</div>
+</div>
+
+<div class="progress-section">
+  <div class="progress-stats">
+    <span id="progressLabel">Giorno 0 di 36</span>
+    <span id="progressPercent">0%</span>
+  </div>
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progressBar" style="width:0%"></div>
+  </div>
+  <div class="streak-display">
+    <div class="streak-number" id="streakNumber">0</div>
+    <div style="font-size:0.75em;color:var(--text-dim);">GIORNI CONSECUTIVI</div>
+  </div>
+</div>
+
+<div class="nav-tabs">
+  <div class="nav-tab active" data-tab="days">Il Lavoro</div>
+  <div class="nav-tab" data-tab="chat">Gurdjieff</div>
+  <div class="nav-tab" data-tab="recap">Registro</div>
+</div>
+
+<div class="main-content">
+
+  <!-- TAB: DAYS -->
+  <div class="tab-content active" id="tab-days"></div>
+
+  <!-- TAB: CHAT -->
+  <div class="tab-content" id="tab-chat">
+    <div class="chat-container">
+      <div class="chat-intro">
+        <h3>Il Maestro Parla</h3>
+        <p>Questo non è Gurdjieff. Gurdjieff è morto nel 1949. Questo è uno specchio costruito sui suoi insegnamenti — incapace di mentirti con gentilezza. Racconta la tua giornata, le tue osservazioni, i tuoi fallimenti. Non cercare conforto. Cerca verità.</p>
+      </div>
+
+      <div class="api-key-section">
+        <label style="font-size:0.8em;color:var(--text-dim);">API Key Google Gemini 
+          <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:var(--accent)">(ottienila qui)</a>
+        </label>
+        <input type="password" class="api-key-input" id="apiKeyInput" placeholder="Incolla qui la tua API key...">
+        <div style="font-size:0.7em;color:var(--text-dim);margin-top:5px;">La chiave resta salvata solo nel tuo browser. Non viene inviata a nessuno tranne Google.</div>
+      </div>
+
+      <div class="chat-messages" id="chatMessages"></div>
+
+      <div class="chat-input-area">
+        <textarea class="chat-input" id="chatInput" placeholder="Scrivi qui la tua osservazione, il tuo registro, la tua domanda..."></textarea>
+        <button class="chat-send" id="chatSend" onclick="sendChat()">Invia</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: RECAP -->
+  <div class="tab-content" id="tab-recap">
+    <div class="recap-card">
+      <h3>Statistiche della Macchina</h3>
+      <div class="stat-grid">
+        <div class="stat-item">
+          <div class="stat-value" id="statCompleted">0</div>
+          <div class="stat-label">Giorni completati</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="statTasks">0</div>
+          <div class="stat-label">Compiti eseguiti</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="statStreak">0</div>
+          <div class="stat-label">Striscia attuale</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="statJournals">0</div>
+          <div class="stat-label">Registri scritti</div>
+        </div>
+      </div>
     </div>
 
-    <ul id="todo-list"></ul>
+    <div class="recap-card">
+      <h3>I Tuoi Registri</h3>
+      <div id="journalHistory" style="font-size:0.85em;color:var(--text-dim);">
+        Nessun registro ancora. Completa i giorni e scrivi.
+      </div>
+    </div>
+
+    <div class="reset-section">
+      <p style="font-size:0.75em;color:var(--text-dim);margin-bottom:10px;">Ricominciare da zero cancella tutto. Come la vita.</p>
+      <button class="reset-btn" onclick="resetAll()">Azzera tutto</button>
+    </div>
+  </div>
+
 </div>
 
 <script>
-    const input = document.getElementById('todo-input');
-    const addBtn = document.getElementById('add-btn');
-    const list = document.getElementById('todo-list');
+// ============================================================
+// DATA: I 36 GIORNI COMPLETI
+// ============================================================
 
-    // Carica dati salvati al caricamento
-    document.addEventListener('DOMContentLoaded', getTodos);
-
-    addBtn.addEventListener('click', addTodo);
-    input.addEventListener('keypress', (e) => { if (e.key === 'Enter') addTodo(); });
-
-    function addTodo() {
-        if (input.value.trim() === "") return;
-
-        const todo = { text: input.value, completed: false };
-        createTodoElement(todo);
-        saveLocalTodo(todo);
-        input.value = "";
-    }
-
-    function createTodoElement(todo) {
-        const li = document.createElement('li');
-        li.innerHTML = `
-            <div class="todo-content">
-                <input type="checkbox" ${todo.completed ? 'checked' : ''} onchange="toggleTodo(this)">
-                <span class="${todo.completed ? 'checked' : ''}">${todo.text}</span>
-            </div>
-            <button class="delete-btn" onclick="removeTodo(this)">Elimina</button>
-        `;
-        list.appendChild(li);
-    }
-
-    function toggleTodo(checkbox) {
-        const text = checkbox.nextElementSibling;
-        text.classList.toggle('checked');
-        updateLocalStorage();
-    }
-
-    function removeTodo(btn) {
-        btn.parentElement.remove();
-        updateLocalStorage();
-    }
-
-    // Funzioni per la persistenza dati (LocalStorage)
-    function saveLocalTodo(todo) {
-        let todos = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
-        todos.push(todo);
-        localStorage.setItem('todos', JSON.stringify(todos));
-    }
-
-    function updateLocalStorage() {
-        const items = [];
-        document.querySelectorAll('li').forEach(li => {
-            items.push({
-                text: li.querySelector('span').innerText,
-                completed: li.querySelector('input').checked
-            });
-        });
-        localStorage.setItem('todos', JSON.stringify(items));
-    }
-
-    function getTodos() {
-        let todos = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
-        todos.forEach(todo => createTodoElement(todo));
-    }
-</script>
-
-</body>
-</html>
+const DAYS_DATA = [
+  // === CICLO 1: VEDO LA MACCHINA ===
+  {
+    day: 1,
+    cycle: 1,
+    cycleName: "VEDO LA MACCHINA",
+    cycleDesc: "Auto-osservazione senza giudizio. Sei un batteriologo che studia una coltura. La coltura sei tu.",
+    name: "Il Fotografo Interiore",
+    subtitle: "Oggi inizi a vedere la macchina",
+    tasks: [
+      {
+        time: "05:30 — SVEGLIA",
+        title: "Alzati. Non negoziare.",
+        desc: "La sveglia suona. I piedi toccano il pavimento entro 10 secondi. Non guardare il telefono. Non controllare nulla. Vai in bagno, lavati la faccia con acqua fredda. Sei in piedi. Questo è l'atto più importante della giornata."
+      },
+      {
+        time: "05:35 — ESERCIZIO DEL MATTINO (20 min)",
+        title: "Seduto. Schiena dritta. Occhi chiusi.",
+        desc: "Per 20 minuti fai una sola cosa: ogni volta che noti un <strong>pensiero</strong>, dì interiormente 'pensiero'. Ogni volta che senti un'<strong>emozione</strong>, dì 'emozione'. Ogni volta che senti una <strong>sensazione fisica</strong>, dì 'corpo'. Non giudicare. Non cambiare. Solo etichetta e torna al silenzio. Sei un fotografo che scatta senza opinione."
+      },
+      {
+        time: "06:00 — CORPO (30 min)",
+        title: "Camminata veloce all'aperto, contando ogni passo.",
+        desc: "Esci. Cammina veloce. <strong>Conta ogni singolo passo: 1, 2, 3...</strong> Quando perdi il conto — e lo perderai — ricomincia da 1. Non arrabbiarti. Annota mentalmente quante volte hai perso il conto. Quel numero è il numero di volte che ti sei addormentato in 30 minuti. A fine camminata: <strong>30 flessioni</strong> (o quante ne riesci, poi aggiungi 2 in più oltre il tuo limite). Il limite non è dove pensi che sia."
+      },
+      {
+        time: "TUTTO IL GIORNO — COMPITO",
+        title: "Il Quaderno dei Segni",
+        desc: "Porta un quaderno piccolo. Ogni volta che ti accorgi di fare qualcosa <strong>meccanicamente</strong> — rispondere al telefono con tono automatico, sorridere senza sentirlo, grattarti, controllare il telefono senza motivo, dire 'tutto bene' quando non è vero — fai un segno. <strong>Non cambiare nulla. Solo conta.</strong> A fine giornata conterai i segni. Quello è il volto della tua prigione."
+      },
+      {
+        time: "21:00 — REGISTRO SERALE",
+        title: "Scrivi nel campo qui sotto.",
+        desc: "Rispondi a queste domande: <strong>1)</strong> Quanti segni di meccanicità hai contato? <strong>2)</strong> Qual è stata l'azione più meccanica della giornata? <strong>3)</strong> C'è stato un momento, anche di mezzo secondo, in cui ti sei sentito PRESENTE? Cosa stavi facendo in quel momento?"
+      },
+      {
+        time: "21:30 — ESERCIZIO DELLA SERA (15 min)",
+        title: "Scansione corporea. Sdraiato a letto.",
+        desc: "Parti dai piedi. Senti le dita dei piedi, la pianta, il tallone. Sali lentamente: caviglie, polpacci, ginocchia, cosce. Bacino. Stomaco. Petto. Spalle. Braccia. Mani. Collo. Viso. Cranio. <strong>Impiega almeno 15 minuti.</strong> Non rilassare nulla. Solo senti. Dove c'è tensione? Dove c'è vuoto? Dove non senti nulla? Le zone morte sono le zone dove non vivi."
+      }
+    ],
+    checks: [
+      "Mi sono alzato alle 05:30 senza negoziare",
+      "Ho fatto i 20 minuti di osservazione seduta",
+      "Ho camminato 30 minuti contando i passi",
+      "Ho fatto le flessioni oltre il mio limite",
+      "Ho portato il quaderno e fatto i segni tutto il giorno",
+      "Ho scritto il registro serale",
+      "Ho fatto la scansione corporea prima di dormire"
+    ],
+    journalPrompt: "Quanti segni meccanici hai contato? Qual è stata l'azione più meccanica? Hai avuto un momento di presenza reale?"
+  },
+  {
+    day: 2,
+    name: "Il Censimento degli Io",
+    subtitle: "Quanti 'Io' vivono dentro di te?",
+    tasks: [
+      {
+        time: "05:30 — SVEGLIA",
+        title: "Piedi a terra entro 10 secondi. Acqua fredda in faccia.",
+        desc: "Come ieri. Come ogni giorno. Non è opzionale."
+      },
+      {
+        time: "05:35 — ESERCIZIO DEL MATTINO (20 min)",
+        title: "Osservazione seduta + Identificazione degli Io",
+        desc: "Come ieri: etichetta pensiero/emozione/corpo. Ma oggi aggiungi: ogni volta che noti un pensiero, chiediti <strong>quale 'Io' lo sta pensando?</strong> L'Io-vittima? L'Io-orgoglioso? L'Io che vuole tornare da lei? L'Io che la odia? L'Io pigro? <strong>Dai loro nomi ridicoli</strong>: Io-cagnolino, Io-re del mondo, Io-piagnucolone. Riderne non è mancanza di serietà — è distacco."
+      },
+      {
+        time: "06:00 — CORPO (30 min)",
+        title: "Camminata all'indietro (10 min) + Velocità variabile (20 min)",
+        desc: "Primi 10 minuti: <strong>cammina all'indietro</strong> in un luogo sicuro (giardino, parco, corridoio lungo). Senti quanto la macchina resiste. Senti l'attenzione che si sveglia per forza. Poi 
