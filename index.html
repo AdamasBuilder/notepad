@@ -8,23 +8,27 @@
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
 
   :root {
-    --bg: #0a0a0a;
-    --surface: #141414;
-    --surface2: #1a1a1a;
-    --border: #2a2a2a;
-    --text: #e0d8cc;
-    --text-dim: #7a7468;
-    --accent: #c4922a;
-    --accent-dim: #8a6a2a;
-    --red: #8b3a3a;
-    --green: #3a6b3a;
-    --green-bright: #5a9b5a;
+    --black: #0a0a0a;
+    --dark: #1a1a1a;
+    --darker: #141414;
+    --gold: #c4a862;
+    --gold-dim: #8a7644;
+    --gold-bright: #e8d48b;
+    --red: #8b2020;
+    --red-bright: #c0392b;
+    --green: #2d6a2e;
+    --green-bright: #4a9e4b;
+    --text: #d4d0c8;
+    --text-dim: #7a7670;
+    --text-bright: #f0ece4;
+    --border: #2a2826;
+    --card-bg: #161514;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: var(--bg);
+    background: var(--black);
     color: var(--text);
     font-family: 'Inter', sans-serif;
     font-weight: 300;
@@ -35,192 +39,151 @@
   /* HEADER */
   .header {
     text-align: center;
-    padding: 40px 20px 20px;
+    padding: 40px 20px 30px;
     border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, #111 0%, var(--black) 100%);
   }
 
   .header h1 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 2.2em;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
     font-weight: 700;
+    color: var(--gold);
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 5px;
+    margin-bottom: 8px;
   }
 
   .header .subtitle {
-    font-size: 0.85em;
+    font-size: 0.85rem;
     color: var(--text-dim);
-    font-style: italic;
-  }
-
-  /* PROGRESS */
-  .progress-section {
-    padding: 20px;
-    border-bottom: 1px solid var(--border);
+    letter-spacing: 2px;
+    text-transform: uppercase;
   }
 
   .progress-bar-container {
-    background: var(--surface);
+    max-width: 600px;
+    margin: 20px auto 0;
+    background: var(--darker);
     border-radius: 4px;
     height: 8px;
     overflow: hidden;
-    margin: 10px 0;
+    border: 1px solid var(--border);
   }
 
-  .progress-bar {
+  .progress-bar-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--accent-dim), var(--accent));
-    transition: width 0.5s ease;
+    background: linear-gradient(90deg, var(--gold-dim), var(--gold));
     border-radius: 4px;
+    transition: width 0.6s ease;
   }
 
-  .progress-stats {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.75em;
+  .progress-text {
+    font-size: 0.75rem;
     color: var(--text-dim);
-  }
-
-  .streak-display {
-    text-align: center;
-    margin-top: 10px;
-    font-size: 0.85em;
-  }
-
-  .streak-number {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2em;
-    color: var(--accent);
-    font-weight: 700;
+    margin-top: 8px;
   }
 
   /* NAV TABS */
   .nav-tabs {
     display: flex;
+    justify-content: center;
+    gap: 0;
+    background: var(--darker);
     border-bottom: 1px solid var(--border);
-    overflow-x: auto;
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
 
   .nav-tab {
-    flex: 1;
-    min-width: 80px;
-    padding: 12px 8px;
-    text-align: center;
-    font-size: 0.75em;
+    padding: 14px 24px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
     color: var(--text-dim);
     cursor: pointer;
+    border: none;
+    background: none;
     border-bottom: 2px solid transparent;
     transition: all 0.3s;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-family: 'Inter', sans-serif;
   }
 
   .nav-tab:hover { color: var(--text); }
   .nav-tab.active {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
+    color: var(--gold);
+    border-bottom-color: var(--gold);
   }
 
-  /* MAIN CONTENT */
-  .main-content {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 0 20px 100px;
-  }
+  /* MAIN */
+  .main { max-width: 800px; margin: 0 auto; padding: 20px; }
 
   .tab-content { display: none; }
   .tab-content.active { display: block; }
 
   /* CYCLE HEADER */
   .cycle-header {
-    padding: 25px 0 15px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 20px;
-  }
-
-  .cycle-label {
-    font-size: 0.7em;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--accent);
-    margin-bottom: 5px;
-  }
-
-  .cycle-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5em;
-    font-weight: 600;
+    font-size: 1.4rem;
+    color: var(--gold);
+    margin: 30px 0 6px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
   }
 
-  .cycle-desc {
-    font-size: 0.85em;
+  .cycle-theme {
+    font-size: 0.8rem;
     color: var(--text-dim);
-    margin-top: 5px;
     font-style: italic;
+    margin-bottom: 20px;
   }
 
   /* DAY CARD */
   .day-card {
-    background: var(--surface);
+    background: var(--card-bg);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    margin-bottom: 15px;
+    border-radius: 6px;
+    margin-bottom: 12px;
     overflow: hidden;
     transition: all 0.3s;
   }
 
-  .day-card.completed {
-    border-color: var(--green);
-    opacity: 0.7;
-  }
-
-  .day-card.today {
-    border-color: var(--accent);
-    box-shadow: 0 0 20px rgba(196, 146, 42, 0.1);
-  }
-
-  .day-card.locked {
-    opacity: 0.4;
-    pointer-events: none;
-  }
+  .day-card.completed { border-left: 3px solid var(--green); opacity: 0.7; }
+  .day-card.today { border-left: 3px solid var(--gold); box-shadow: 0 0 20px rgba(196,168,98,0.08); }
+  .day-card.locked { opacity: 0.4; }
 
   .day-header {
-    padding: 15px 20px;
-    cursor: pointer;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    cursor: pointer;
+    user-select: none;
   }
 
-  .day-header:hover { background: var(--surface2); }
+  .day-header:hover { background: rgba(255,255,255,0.02); }
 
   .day-number {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.8em;
+    font-size: 1.1rem;
     font-weight: 700;
-    color: var(--accent);
-    width: 50px;
+    color: var(--gold);
+    min-width: 60px;
   }
 
-  .day-title-area { flex: 1; margin-left: 15px; }
-
-  .day-name {
-    font-size: 0.95em;
-    font-weight: 500;
-  }
-
-  .day-subtitle {
-    font-size: 0.75em;
-    color: var(--text-dim);
-    margin-top: 2px;
+  .day-title {
+    flex: 1;
+    font-size: 0.9rem;
+    color: var(--text-bright);
+    font-weight: 400;
   }
 
   .day-status {
-    font-size: 1.2em;
-    width: 30px;
-    text-align: center;
+    font-size: 1.2rem;
+    min-width: 30px;
+    text-align: right;
   }
 
   .day-body {
@@ -231,365 +194,393 @@
 
   .day-body.open { display: block; }
 
-  /* TASK BLOCKS */
-  .task-block {
-    margin: 15px 0;
-    padding: 15px;
-    background: var(--bg);
-    border-radius: 6px;
-    border-left: 3px solid var(--accent-dim);
+  .task-section {
+    margin: 16px 0;
   }
 
-  .task-time {
-    font-size: 0.7em;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--accent);
-    margin-bottom: 5px;
-    font-weight: 500;
-  }
-
-  .task-title {
-    font-weight: 500;
+  .task-section h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--gold-dim);
     margin-bottom: 8px;
-    font-size: 0.95em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
-  .task-desc {
-    font-size: 0.85em;
-    color: var(--text-dim);
-    line-height: 1.8;
-  }
+  .task-section h4 .icon { font-size: 0.9rem; }
 
-  .task-desc strong {
+  .task-section p, .task-section li {
+    font-size: 0.85rem;
     color: var(--text);
-    font-weight: 500;
+    line-height: 1.8;
+    margin-bottom: 6px;
   }
 
-  .task-desc em {
-    color: var(--accent);
-    font-style: italic;
+  .task-section ul {
+    list-style: none;
+    padding-left: 0;
   }
 
-  /* CHECKLIST */
-  .checklist { margin-top: 15px; }
+  .task-section ul li::before {
+    content: "▸ ";
+    color: var(--gold-dim);
+  }
 
-  .check-item {
+  .task-check {
     display: flex;
     align-items: flex-start;
-    padding: 8px 0;
+    gap: 12px;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 4px;
+    margin-bottom: 6px;
     cursor: pointer;
-    gap: 10px;
+    transition: background 0.2s;
   }
 
-  .check-box {
+  .task-check:hover { background: rgba(255,255,255,0.04); }
+
+  .task-check input[type="checkbox"] {
+    appearance: none;
     width: 20px;
     height: 20px;
     min-width: 20px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--gold-dim);
     border-radius: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    cursor: pointer;
     margin-top: 2px;
-    transition: all 0.2s;
-    font-size: 0.75em;
+    position: relative;
+    background: transparent;
   }
 
-  .check-item.checked .check-box {
-    background: var(--green);
-    border-color: var(--green-bright);
+  .task-check input[type="checkbox"]:checked {
+    background: var(--gold-dim);
+    border-color: var(--gold);
   }
 
-  .check-label {
-    font-size: 0.85em;
-    line-height: 1.5;
+  .task-check input[type="checkbox"]:checked::after {
+    content: "✓";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--black);
+    font-size: 14px;
+    font-weight: bold;
   }
 
-  .check-item.checked .check-label {
+  .task-check label {
+    font-size: 0.85rem;
+    color: var(--text);
+    cursor: pointer;
+    line-height: 1.6;
+  }
+
+  .task-check.checked label {
     text-decoration: line-through;
     color: var(--text-dim);
   }
 
   /* JOURNAL */
-  .journal-section {
-    margin-top: 20px;
-    padding-top: 15px;
-    border-top: 1px solid var(--border);
-  }
-
-  .journal-label {
-    font-size: 0.75em;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--accent);
-    margin-bottom: 8px;
-  }
-
-  .journal-textarea {
+  .journal-area {
     width: 100%;
-    min-height: 100px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 12px;
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
-    font-size: 0.85em;
-    line-height: 1.7;
-    resize: vertical;
-  }
-
-  .journal-textarea:focus {
-    outline: none;
-    border-color: var(--accent-dim);
-  }
-
-  .journal-prompt {
-    font-size: 0.8em;
-    color: var(--text-dim);
-    font-style: italic;
-    margin-bottom: 8px;
-  }
-
-  /* COMPLETE BUTTON */
-  .complete-btn {
-    display: block;
-    width: 100%;
-    padding: 14px;
-    margin-top: 20px;
-    background: var(--accent-dim);
-    color: var(--text);
-    border: none;
-    border-radius: 6px;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9em;
-    font-weight: 500;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    transition: all 0.3s;
-  }
-
-  .complete-btn:hover { background: var(--accent); color: var(--bg); }
-  .complete-btn:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-  }
-  .complete-btn.done {
-    background: var(--green);
-    cursor: default;
-  }
-
-  /* GURDJIEFF CHAT */
-  .chat-container {
-    padding-top: 20px;
-  }
-
-  .chat-intro {
-    padding: 20px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    margin-bottom: 20px;
-    font-size: 0.85em;
-    line-height: 1.8;
-  }
-
-  .chat-intro h3 {
-    font-family: 'Cormorant Garamond', serif;
-    color: var(--accent);
-    margin-bottom: 10px;
-  }
-
-  .api-key-section {
-    margin-bottom: 20px;
-    padding: 15px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-  }
-
-  .api-key-input {
-    width: 100%;
-    padding: 10px;
-    background: var(--bg);
+    min-height: 120px;
+    background: var(--darker);
     border: 1px solid var(--border);
     border-radius: 4px;
     color: var(--text);
     font-family: 'Inter', sans-serif;
-    font-size: 0.85em;
-    margin-top: 8px;
+    font-size: 0.85rem;
+    padding: 14px;
+    resize: vertical;
+    line-height: 1.7;
   }
 
-  .api-key-input:focus {
+  .journal-area:focus {
     outline: none;
-    border-color: var(--accent-dim);
+    border-color: var(--gold-dim);
+  }
+
+  .journal-area::placeholder { color: var(--text-dim); }
+
+  .btn-complete {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin-top: 16px;
+    background: linear-gradient(135deg, var(--gold-dim), var(--gold));
+    color: var(--black);
+    border: none;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .btn-complete:hover { box-shadow: 0 0 20px rgba(196,168,98,0.3); }
+  .btn-complete:disabled {
+    background: var(--border);
+    color: var(--text-dim);
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  .warning-text {
+    font-size: 0.75rem;
+    color: var(--red-bright);
+    text-align: center;
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  /* CHAT TAB */
+  .chat-container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 200px);
+    min-height: 500px;
+  }
+
+  .chat-setup {
+    padding: 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 16px;
+  }
+
+  .chat-setup label {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .chat-setup input {
+    width: 100%;
+    padding: 10px 14px;
+    background: var(--darker);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+  }
+
+  .chat-setup input:focus {
+    outline: none;
+    border-color: var(--gold-dim);
+  }
+
+  .chat-setup .note {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 6px;
   }
 
   .chat-messages {
-    max-height: 500px;
+    flex: 1;
     overflow-y: auto;
-    margin-bottom: 15px;
-    padding: 10px 0;
+    padding: 16px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
 
   .chat-msg {
-    margin-bottom: 15px;
-    padding: 12px 15px;
-    border-radius: 8px;
-    font-size: 0.85em;
+    max-width: 85%;
+    padding: 14px 18px;
+    border-radius: 6px;
+    font-size: 0.85rem;
     line-height: 1.7;
   }
 
   .chat-msg.user {
-    background: var(--surface2);
+    align-self: flex-end;
+    background: var(--dark);
     border: 1px solid var(--border);
-    margin-left: 30px;
+    color: var(--text);
   }
 
-  .chat-msg.ai {
-    background: var(--surface);
-    border: 1px solid var(--accent-dim);
-    border-left: 3px solid var(--accent);
-    margin-right: 30px;
+  .chat-msg.gurdjieff {
+    align-self: flex-start;
+    background: rgba(196,168,98,0.08);
+    border: 1px solid rgba(196,168,98,0.15);
+    color: var(--text-bright);
   }
 
-  .chat-msg .msg-label {
-    font-size: 0.7em;
+  .chat-msg .sender {
+    font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: var(--accent);
-    margin-bottom: 5px;
+    margin-bottom: 6px;
+    color: var(--gold-dim);
   }
+
+  .chat-msg.user .sender { color: var(--text-dim); }
 
   .chat-input-area {
     display: flex;
     gap: 10px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
   }
 
   .chat-input {
     flex: 1;
-    padding: 12px;
-    background: var(--surface);
+    padding: 12px 16px;
+    background: var(--darker);
     border: 1px solid var(--border);
-    border-radius: 6px;
+    border-radius: 4px;
     color: var(--text);
     font-family: 'Inter', sans-serif;
-    font-size: 0.85em;
+    font-size: 0.85rem;
     resize: none;
-    min-height: 50px;
+    min-height: 48px;
+    max-height: 120px;
   }
 
   .chat-input:focus {
     outline: none;
-    border-color: var(--accent-dim);
+    border-color: var(--gold-dim);
   }
 
   .chat-send {
     padding: 12px 20px;
-    background: var(--accent-dim);
-    color: var(--text);
+    background: var(--gold-dim);
+    color: var(--black);
     border: none;
-    border-radius: 6px;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     cursor: pointer;
-    font-weight: 500;
-    font-size: 0.85em;
     transition: all 0.3s;
     align-self: flex-end;
   }
 
-  .chat-send:hover { background: var(--accent); color: var(--bg); }
-  .chat-send:disabled { opacity: 0.3; cursor: not-allowed; }
+  .chat-send:hover { background: var(--gold); }
+  .chat-send:disabled { opacity: 0.4; cursor: not-allowed; }
 
-  /* RECAP TAB */
-  .recap-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 15px;
-  }
-
-  .recap-card h3 {
-    font-family: 'Cormorant Garamond', serif;
-    color: var(--accent);
-    margin-bottom: 10px;
-  }
-
-  .stat-grid {
+  /* STATS TAB */
+  .stats-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 30px;
   }
 
-  .stat-item {
-    background: var(--bg);
-    padding: 15px;
+  .stat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
     border-radius: 6px;
+    padding: 20px;
     text-align: center;
   }
 
-  .stat-value {
+  .stat-number {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 2em;
+    font-size: 2.5rem;
     font-weight: 700;
-    color: var(--accent);
+    color: var(--gold);
   }
 
   .stat-label {
-    font-size: 0.7em;
+    font-size: 0.75rem;
     color: var(--text-dim);
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-top: 5px;
+    margin-top: 4px;
   }
 
-  /* QUOTE */
-  .daily-quote {
-    padding: 20px;
-    margin: 20px 0;
-    border-left: 3px solid var(--accent);
-    background: var(--surface);
-    border-radius: 0 8px 8px 0;
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .cal-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    color: var(--text-dim);
+  }
+
+  .cal-day.done { background: rgba(45,106,46,0.3); border-color: var(--green); color: var(--green-bright); }
+  .cal-day.current { background: rgba(196,168,98,0.15); border-color: var(--gold); color: var(--gold); }
+  .cal-day.future { opacity: 0.3; }
+
+  .journal-history {
+    margin-top: 30px;
+  }
+
+  .journal-entry {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+  }
+
+  .journal-entry h4 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1em;
-    font-style: italic;
-    line-height: 1.8;
+    color: var(--gold-dim);
+    margin-bottom: 8px;
   }
 
-  .quote-author {
-    font-size: 0.75em;
-    color: var(--accent);
-    margin-top: 10px;
-    font-style: normal;
-    font-family: 'Inter', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+  .journal-entry p {
+    font-size: 0.83rem;
+    color: var(--text);
+    white-space: pre-wrap;
   }
 
-  /* RESET */
-  .reset-section {
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid var(--border);
-    text-align: center;
-  }
-
-  .reset-btn {
-    padding: 8px 20px;
+  /* RESET BUTTON */
+  .btn-danger {
+    padding: 10px 20px;
     background: transparent;
     color: var(--red);
     border: 1px solid var(--red);
     border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.75em;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 1px;
+    cursor: pointer;
+    margin-top: 40px;
+    transition: all 0.3s;
   }
 
-  .reset-btn:hover { background: var(--red); color: var(--text); }
+  .btn-danger:hover { background: var(--red); color: white; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .nav-tab { padding: 12px 14px; font-size: 0.7rem; }
+    .main { padding: 12px; }
+    .day-header { padding: 14px 16px; }
+    .calendar-grid { grid-template-columns: repeat(6, 1fr); gap: 4px; }
+    .chat-container { height: calc(100vh - 180px); }
+  }
 
   /* LOADING */
   .loading-dots::after {
@@ -601,189 +592,1007 @@
     40% { content: '..'; }
     60%, 100% { content: '...'; }
   }
-
-  /* SCROLL */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-
-  @media (max-width: 600px) {
-    .header h1 { font-size: 1.5em; }
-    .stat-grid { grid-template-columns: 1fr; }
-    .chat-msg.user { margin-left: 10px; }
-    .chat-msg.ai { margin-right: 10px; }
-  }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <h1>I 36 Giorni</h1>
-  <div class="subtitle">Manuale spietato per il risveglio dell'uomo-macchina</div>
-</div>
-
-<div class="progress-section">
-  <div class="progress-stats">
-    <span id="progressLabel">Giorno 0 di 36</span>
-    <span id="progressPercent">0%</span>
-  </div>
+  <h1>36 Giorni</h1>
+  <div class="subtitle">Il Lavoro su di Sé — Metodo della Quarta Via</div>
   <div class="progress-bar-container">
-    <div class="progress-bar" id="progressBar" style="width:0%"></div>
+    <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
   </div>
-  <div class="streak-display">
-    <div class="streak-number" id="streakNumber">0</div>
-    <div style="font-size:0.75em;color:var(--text-dim);">GIORNI CONSECUTIVI</div>
-  </div>
+  <div class="progress-text" id="progressText">Giorno 0 / 36 — 0% completato</div>
 </div>
 
 <div class="nav-tabs">
-  <div class="nav-tab active" data-tab="days">Il Lavoro</div>
-  <div class="nav-tab" data-tab="chat">Gurdjieff</div>
-  <div class="nav-tab" data-tab="recap">Registro</div>
+  <button class="nav-tab active" onclick="switchTab('plan')">Il Piano</button>
+  <button class="nav-tab" onclick="switchTab('chat')">Parla al Maestro</button>
+  <button class="nav-tab" onclick="switchTab('stats')">Registro</button>
 </div>
 
-<div class="main-content">
-
-  <!-- TAB: DAYS -->
-  <div class="tab-content active" id="tab-days"></div>
+<div class="main">
+  <!-- TAB: PLAN -->
+  <div class="tab-content active" id="tab-plan"></div>
 
   <!-- TAB: CHAT -->
   <div class="tab-content" id="tab-chat">
-    <div class="chat-container">
-      <div class="chat-intro">
-        <h3>Il Maestro Parla</h3>
-        <p>Questo non è Gurdjieff. Gurdjieff è morto nel 1949. Questo è uno specchio costruito sui suoi insegnamenti — incapace di mentirti con gentilezza. Racconta la tua giornata, le tue osservazioni, i tuoi fallimenti. Non cercare conforto. Cerca verità.</p>
+    <div class="chat-setup" id="chatSetup">
+      <label>La tua API Key di Gemini</label>
+      <input type="password" id="apiKeyInput" placeholder="Incolla qui la tua API key..." />
+      <div class="note">Vai su <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:var(--gold-dim)">aistudio.google.com</a> per ottenerne una gratuita. La chiave resta salvata solo nel tuo browser.</div>
+      <button class="btn-complete" style="margin-top:12px" onclick="saveApiKey()">Salva e Inizia</button>
+    </div>
+    <div class="chat-container" id="chatContainer" style="display:none">
+      <div class="chat-messages" id="chatMessages">
+        <div class="chat-msg gurdjieff">
+          <div class="sender">Il Maestro</div>
+          Sei qui. Bene. Ma "essere qui" non significa nulla se non sei <em>presente</em>. Dimmi: cosa hai osservato oggi sulla tua macchina? Non cosa hai pensato — cosa hai <em>visto</em>. Se non hai visto nulla, dillo, e almeno quella sarà una verità.
+        </div>
       </div>
-
-      <div class="api-key-section">
-        <label style="font-size:0.8em;color:var(--text-dim);">API Key Google Gemini 
-          <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:var(--accent)">(ottienila qui)</a>
-        </label>
-        <input type="password" class="api-key-input" id="apiKeyInput" placeholder="Incolla qui la tua API key...">
-        <div style="font-size:0.7em;color:var(--text-dim);margin-top:5px;">La chiave resta salvata solo nel tuo browser. Non viene inviata a nessuno tranne Google.</div>
-      </div>
-
-      <div class="chat-messages" id="chatMessages"></div>
-
       <div class="chat-input-area">
-        <textarea class="chat-input" id="chatInput" placeholder="Scrivi qui la tua osservazione, il tuo registro, la tua domanda..."></textarea>
-        <button class="chat-send" id="chatSend" onclick="sendChat()">Invia</button>
+        <textarea class="chat-input" id="chatInput" placeholder="Scrivi al Maestro..." rows="1"></textarea>
+        <button class="chat-send" id="chatSend" onclick="sendMessage()">Invia</button>
       </div>
     </div>
   </div>
 
-  <!-- TAB: RECAP -->
-  <div class="tab-content" id="tab-recap">
-    <div class="recap-card">
-      <h3>Statistiche della Macchina</h3>
-      <div class="stat-grid">
-        <div class="stat-item">
-          <div class="stat-value" id="statCompleted">0</div>
-          <div class="stat-label">Giorni completati</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-value" id="statTasks">0</div>
-          <div class="stat-label">Compiti eseguiti</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-value" id="statStreak">0</div>
-          <div class="stat-label">Striscia attuale</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-value" id="statJournals">0</div>
-          <div class="stat-label">Registri scritti</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="recap-card">
-      <h3>I Tuoi Registri</h3>
-      <div id="journalHistory" style="font-size:0.85em;color:var(--text-dim);">
-        Nessun registro ancora. Completa i giorni e scrivi.
-      </div>
-    </div>
-
-    <div class="reset-section">
-      <p style="font-size:0.75em;color:var(--text-dim);margin-bottom:10px;">Ricominciare da zero cancella tutto. Come la vita.</p>
-      <button class="reset-btn" onclick="resetAll()">Azzera tutto</button>
-    </div>
-  </div>
-
+  <!-- TAB: STATS -->
+  <div class="tab-content" id="tab-stats"></div>
 </div>
 
 <script>
-// ============================================================
-// DATA: I 36 GIORNI COMPLETI
-// ============================================================
-
+// ========================================
+// DATA: THE 36 DAYS
+// ========================================
 const DAYS_DATA = [
-  // === CICLO 1: VEDO LA MACCHINA ===
+  // CYCLE 1: "VEDO LA MACCHINA"
   {
-    day: 1,
-    cycle: 1,
-    cycleName: "VEDO LA MACCHINA",
-    cycleDesc: "Auto-osservazione senza giudizio. Sei un batteriologo che studia una coltura. La coltura sei tu.",
-    name: "Il Fotografo Interiore",
-    subtitle: "Oggi inizi a vedere la macchina",
+    day: 1, cycle: 1, cycleName: "Vedo la Macchina", cycleTheme: "Auto-osservazione senza giudizio",
+    title: "Il Fotografo Interiore",
     tasks: [
-      {
-        time: "05:30 — SVEGLIA",
-        title: "Alzati. Non negoziare.",
-        desc: "La sveglia suona. I piedi toccano il pavimento entro 10 secondi. Non guardare il telefono. Non controllare nulla. Vai in bagno, lavati la faccia con acqua fredda. Sei in piedi. Questo è l'atto più importante della giornata."
-      },
-      {
-        time: "05:35 — ESERCIZIO DEL MATTINO (20 min)",
-        title: "Seduto. Schiena dritta. Occhi chiusi.",
-        desc: "Per 20 minuti fai una sola cosa: ogni volta che noti un <strong>pensiero</strong>, dì interiormente 'pensiero'. Ogni volta che senti un'<strong>emozione</strong>, dì 'emozione'. Ogni volta che senti una <strong>sensazione fisica</strong>, dì 'corpo'. Non giudicare. Non cambiare. Solo etichetta e torna al silenzio. Sei un fotografo che scatta senza opinione."
-      },
-      {
-        time: "06:00 — CORPO (30 min)",
-        title: "Camminata veloce all'aperto, contando ogni passo.",
-        desc: "Esci. Cammina veloce. <strong>Conta ogni singolo passo: 1, 2, 3...</strong> Quando perdi il conto — e lo perderai — ricomincia da 1. Non arrabbiarti. Annota mentalmente quante volte hai perso il conto. Quel numero è il numero di volte che ti sei addormentato in 30 minuti. A fine camminata: <strong>30 flessioni</strong> (o quante ne riesci, poi aggiungi 2 in più oltre il tuo limite). Il limite non è dove pensi che sia."
-      },
-      {
-        time: "TUTTO IL GIORNO — COMPITO",
-        title: "Il Quaderno dei Segni",
-        desc: "Porta un quaderno piccolo. Ogni volta che ti accorgi di fare qualcosa <strong>meccanicamente</strong> — rispondere al telefono con tono automatico, sorridere senza sentirlo, grattarti, controllare il telefono senza motivo, dire 'tutto bene' quando non è vero — fai un segno. <strong>Non cambiare nulla. Solo conta.</strong> A fine giornata conterai i segni. Quello è il volto della tua prigione."
-      },
-      {
-        time: "21:00 — REGISTRO SERALE",
-        title: "Scrivi nel campo qui sotto.",
-        desc: "Rispondi a queste domande: <strong>1)</strong> Quanti segni di meccanicità hai contato? <strong>2)</strong> Qual è stata l'azione più meccanica della giornata? <strong>3)</strong> C'è stato un momento, anche di mezzo secondo, in cui ti sei sentito PRESENTE? Cosa stavi facendo in quel momento?"
-      },
-      {
-        time: "21:30 — ESERCIZIO DELLA SERA (15 min)",
-        title: "Scansione corporea. Sdraiato a letto.",
-        desc: "Parti dai piedi. Senti le dita dei piedi, la pianta, il tallone. Sali lentamente: caviglie, polpacci, ginocchia, cosce. Bacino. Stomaco. Petto. Spalle. Braccia. Mani. Collo. Viso. Cranio. <strong>Impiega almeno 15 minuti.</strong> Non rilassare nulla. Solo senti. Dove c'è tensione? Dove c'è vuoto? Dove non senti nulla? Le zone morte sono le zone dove non vivi."
-      }
+      { time: "05:30", cat: "sveglia", text: "Sveglia. Niente snooze. Piedi a terra entro 10 secondi. Conta ad alta voce da 10 a 0 mentre ti alzi." },
+      { time: "05:35", cat: "esercizio", text: "Siediti su una sedia con la schiena dritta, piedi a terra, mani sulle ginocchia. Occhi chiusi. Timer 20 minuti. Ogni volta che noti un pensiero, dì interiormente 'pensiero'. Ogni volta che senti un'emozione (noia, ansia, tristezza), dì 'emozione'. Ogni volta che senti il corpo (prurito, dolore, tensione), dì 'corpo'. Non fare altro. Non giudicare. Fotografa." },
+      { time: "06:00", cat: "corpo", text: "Esci. Cammina veloce per 30 minuti. Conta ogni passo ad alta voce o interiormente. Quando perdi il conto, ricomincia da 1. Annota mentalmente quante volte hai ricominciato." },
+      { time: "06:30", cat: "colazione", text: "Mangia in silenzio. Niente telefono, niente musica, niente lettura. Solo tu e il cibo. Mastica ogni boccone 20 volte." },
+      { time: "Tutto il giorno", cat: "compito", text: "Porta un quaderno piccolo in tasca. Ogni volta che fai qualcosa meccanicamente — controllare il telefono senza motivo, sorridere senza sentirlo, rispondere con frasi automatiche, grattarti — fai un segno. NON cambiare nulla. Solo conta. L'obiettivo è arrivare a sera con almeno 30 segni." },
+      { time: "21:00", cat: "registro", text: "Scrivi nel registro: quanti segni hai fatto? Qual è l'azione più meccanica? C'è stato un momento, anche di 3 secondi, in cui ti sei sentito PRESENTE? Cosa stavi facendo in quel momento?" },
+      { time: "21:30", cat: "sera", text: "Sdraiato a letto, luci spente. Scansiona il corpo partendo dal piede sinistro, risali lungo la gamba, poi piede destro, gamba, bacino, stomaco, petto, mano sinistra, braccio, mano destra, braccio, collo, viso, cima della testa. Impiega almeno 15 minuti. Non rilassare nulla — solo SENTI." }
     ],
-    checks: [
-      "Mi sono alzato alle 05:30 senza negoziare",
-      "Ho fatto i 20 minuti di osservazione seduta",
-      "Ho camminato 30 minuti contando i passi",
-      "Ho fatto le flessioni oltre il mio limite",
-      "Ho portato il quaderno e fatto i segni tutto il giorno",
-      "Ho scritto il registro serale",
-      "Ho fatto la scansione corporea prima di dormire"
-    ],
-    journalPrompt: "Quanti segni meccanici hai contato? Qual è stata l'azione più meccanica? Hai avuto un momento di presenza reale?"
+    journalPrompts: "Quanti segni sul quaderno? Azione più meccanica del giorno? Momento di presenza (anche brevissimo) — cosa stavi facendo? Quante volte hai perso il conto dei passi?"
   },
   {
-    day: 2,
-    name: "Il Censimento degli Io",
-    subtitle: "Quanti 'Io' vivono dentro di te?",
+    day: 2, cycle: 1, cycleName: "Vedo la Macchina", cycleTheme: "Auto-osservazione senza giudizio",
+    title: "Il Censimento degli Io",
     tasks: [
-      {
-        time: "05:30 — SVEGLIA",
-        title: "Piedi a terra entro 10 secondi. Acqua fredda in faccia.",
-        desc: "Come ieri. Come ogni giorno. Non è opzionale."
-      },
-      {
-        time: "05:35 — ESERCIZIO DEL MATTINO (20 min)",
-        title: "Osservazione seduta + Identificazione degli Io",
-        desc: "Come ieri: etichetta pensiero/emozione/corpo. Ma oggi aggiungi: ogni volta che noti un pensiero, chiediti <strong>quale 'Io' lo sta pensando?</strong> L'Io-vittima? L'Io-orgoglioso? L'Io che vuole tornare da lei? L'Io che la odia? L'Io pigro? <strong>Dai loro nomi ridicoli</strong>: Io-cagnolino, Io-re del mondo, Io-piagnucolone. Riderne non è mancanza di serietà — è distacco."
-      },
-      {
-        time: "06:00 — CORPO (30 min)",
-        title: "Camminata all'indietro (10 min) + Velocità variabile (20 min)",
-        desc: "Primi 10 minuti: <strong>cammina all'indietro</strong> in un luogo sicuro (giardino, parco, corridoio lungo). Senti quanto la macchina resiste. Senti l'attenzione che si sveglia per forza. Poi 
+      { time: "05:30", cat: "sveglia", text: "Sveglia. Piedi a terra in 10 secondi. Prima di alzarti, senti il peso del corpo sul materasso per 5 respiri." },
+      { time: "05:35", cat: "esercizio", text: "Siediti, schiena dritta, 20 minuti. Stesso esercizio del Giorno 1 ma aggiungi: ogni pensiero che noti, identifica QUALE 'Io' lo pensa. L'Io pauroso? L'Io pigro? L'Io che rivuole la ragazza? L'Io arrabbiato con lei? Dai nomi ridicoli: 'Io-cagnolino abbandonato', 'Io-re del mondo', 'Io-vittima cosmica'." },
+      { time: "06:00", cat: "corpo", text: "30 minuti camminata: primi 10 minuti CAMMINA ALL'INDIETRO (in un posto sicuro — parco, cortile). Poi 2 minuti velocissimi alternati a 2 minuti lentissimi per i restanti 20 minuti. Conta i passi come ieri." },
+      { time: "06:30", cat: "colazione", text: "Colazione in silenzio. Oggi mangia con la mano non dominante." },
+      { time: "Tutto il giorno", cat: "compito", text: "Ogni volta che dici 'io' — 'io penso', 'io voglio', 'a me piace' — fermati interiormente e chiediti: QUALE Io sta parlando? È lo stesso Io di un'ora fa? La sera scrivi la lista completa degli Io che hai scoperto." },
+      { time: "21:00", cat: "registro", text: "Lista di tutti gli Io identificati. Quanti sono? Quali si contraddicono? Quale ha dominato oggi?" },
+      { time: "21:30", cat: "sera", text: "Scansione corporea come ieri. Oggi aggiungi: cerca il punto esatto del corpo dove vive il dolore per la separazione. Petto? Stomaco? Gola? Trovalo. Non scacciarlo. Sentilo come sensazione pura per 5 minuti, senza pensare alla storia." }
+    ],
+    journalPrompts: "Lista degli Io identificati. Quale Io ha dominato? Quali si contraddicono? Dove nel corpo vive il dolore della separazione?"
+  },
+  {
+    day: 3, cycle: 1, cycleName: "Vedo la Macchina", cycleTheme: "Auto-osservazione senza giudizio",
+    title: "Il Digiuno della Parola",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia. Alzati in silenzio. Da questo momento fino a sera: PARLA SOLO QUANDO È STRETTAMENTE NECESSARIO PER IL LAVORO." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 20 minuti. Stesso esercizio dei giorni precedenti. Oggi cerca lo SPAZIO TRA DUE PENSIERI. C'è un intervallo — anche mezzo secondo — tra un pensiero e il successivo. In quello spazio, qualcosa di diverso è presente. Non definirlo. Sentilo." },
+      { time: "06:00", cat: "corpo", text: "30 minuti di lavoro fisico PESANTE. Niente camminata — FATICA. 5 serie di: 10 flessioni + 15 squat + 30 secondi plank. Tra una serie e l'altra, 60 secondi in piedi a sentire il cuore che batte. Se non riesci a completare, fai quello che puoi ma NON fermarti prima di 30 minuti." },
+      { time: "06:30", cat: "colazione", text: "Colazione in silenzio (oggi è facile, stai già in silenzio)." },
+      { time: "Tutto il giorno", cat: "compito", text: "IL DIGIUNO: niente chiacchiere, niente commenti sul tempo, niente 'come stai bene grazie'. Se qualcuno ti chiede qualcosa di non essenziale, rispondi con il minimo. Non essere scortese — sii ECONOMICO. Osserva la PRESSIONE INTERNA che ti spinge a parlare. Quella pressione è la macchina che cerca il suo carburante." },
+      { time: "21:00", cat: "registro", text: "Com'è stata l'esperienza del silenzio? Dove hai ceduto? Quanta energia hai risparmiato? Cosa hai scoperto sulla tua necessità di parlare?" },
+      { time: "21:30", cat: "sera", text: "Scansione corporea + respirazione: inspira contando 4, trattieni 4, espira 4, trattieni 4. Ripeti per 10 minuti esatti (timer)." }
+    ],
+    journalPrompts: "Quante volte ho rotto il silenzio inutilmente? Qual era la pressione interna più forte? Cosa ho scoperto sul mio bisogno di parlare? Quanta energia mi è rimasta a fine giornata rispetto al solito?"
+  },
+  {
+    day: 4, cycle: 1, cycleName: "Vedo la Macchina", cycleTheme: "Auto-osservazione senza giudizio",
+    title: "Il Cibo Come Sacramento",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia. Piedi a terra. Bevi un bicchiere d'acqua intero stando in piedi, sentendo l'acqua scendere." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 20 minuti. Osservazione standard. Oggi aggiungi alla fine 5 minuti con questa domanda sospesa: 'CHI È QUELLO CHE OSSERVA?' Non cercare la risposta. Tieni la domanda vibrante come una campana. Lascia che lavori da sola." },
+      { time: "06:00", cat: "corpo", text: "In piedi. MOVIMENTI A TRE RITMI: braccio destro va su e giù (1 secondo su, 1 secondo giù). Braccio sinistro si apre lateralmente e si chiude (2 secondi apri, 2 secondi chiudi). Piedi marciano sul posto (3 passi al secondo). Tre ritmi diversi SIMULTANEI. Fallo per 5 minuti, riposa 2 minuti, rifallo per 5 minuti, riposa, altri 5 minuti. Totale 15 minuti di movimento + 15 minuti di cammino consapevole." },
+      { time: "06:30", cat: "colazione", text: "COLAZIONE SACRA: Mastica ogni boccone 30 volte. Tra un boccone e l'altro, appoggia la forchetta/il cucchiaio. Senti il gusto cambiare. Senti il cibo scendere. Senti lo stomaco che lo riceve." },
+      { time: "Tutto il giorno", cat: "compito", text: "OGNI PASTO oggi è un esercizio. Pranzo e cena con le stesse regole della colazione. Mangia lento. Senti tutto. Se mangi con altri, osserva come mangiano loro — inconsapevolmente, parlando, guardando il telefono. Non giudicarli. Nota la differenza." },
+      { time: "21:00", cat: "registro", text: "Descrivi l'esperienza del mangiare consapevole. Cosa hai notato che non avevi MAI notato prima? Come cambia il gusto al 20° morso?" },
+      { time: "21:30", cat: "sera", text: "Scansione corporea. Oggi mentre scansioni, invia gratitudine a ogni parte: 'Stomaco, hai lavorato tutto il giorno per me senza che te lo chiedessi. Ti sento.'" }
+    ],
+    journalPrompts: "Esperienza del mangiare consapevole — cosa ho scoperto? Come cambia il gusto? Quanto è stato difficile il movimento a tre ritmi? La domanda 'chi osserva' ha prodotto qualcosa?"
+  },
+  {
+    day: 5, cycle: 1, cycleName: "Vedo la Macchina", cycleTheme: "Auto-osservazione senza giudizio",
+    title: "L'Inventario della Sofferenza",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia. Piedi a terra. Oggi la giornata sarà dura. Accettalo adesso." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 20 minuti. Oggi il focus è sulle EMOZIONI. Non etichettare solo 'emozione'. Distingui: è un'emozione REALE (meraviglia, compassione, rimorso genuino) o MECCANICA (auto-pietà, risentimento, paura dell'opinione altrui, nostalgia manipolativa)? Ogni volta che ne identifichi una meccanica, dì: 'Kundabuffer'." },
+      { time: "06:00", cat: "corpo", text: "Doccia FREDDA. Entra tiepida. Nell'arco di 2 minuti portala al freddo massimo. Resta sotto l'acqua fredda per ALMENO 2 minuti. Il corpo urlerà. Tu resta. Osserva la reazione senza scappare. Chi è quello che resta? Dopo la doccia: 20 minuti di camminata veloce." },
+      { time: "06:30", cat: "colazione", text: "Colazione consapevole in silenzio." },
+      { time: "Tutto il giorno", cat: "compito", text: "L'INVENTARIO: Scrivi su un foglio la lista COMPLETA delle cose che ti fanno soffrire adesso. La ragazza. I soldi. Il lavoro. Il non sapere chi sei. TUTTO. Per ognuna rispondi: questa sofferenza mi dà ENERGIA per cambiare o me la TOGLIE? Se toglie: è sofferenza meccanica. Ogni volta che oggi emerge una sofferenza meccanica, SENTILA NEL CORPO, non seguire la storia, respira in quella sensazione per 30 secondi, poi torna a ciò che stavi facendo." },
+      { time: "21:00", cat: "registro", text: "Riscrivi l'inventario dividendo: sofferenze che danno energia VS sofferenze che la tolgono. Sii brutale. L'auto-pietà è un lusso che non puoi più permetterti." },
+      { time: "21:30", cat: "sera", text: "Scansione corporea. Trova dove ogni sofferenza dell'inventario vive nel corpo. Mappa dolore-corpo." }
+    ],
+    journalPrompts: "Inventario completo: sofferenze che danno energia VS sofferenze che tolgono energia. Dove vive ogni dolore nel corpo? Com'è stata la doccia fredda? Chi è rimasto sotto l'acqua?"
+  },
+  {
+    day: 6, cycle: 1, cycleName: "Vedo la Macchina", cycleTheme: "Auto-osservazione senza giudizio",
+    title: "La Morte del Giorno — Ricapitolazione",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia. Ultima giornata del primo ciclo." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 20 minuti. Osservazione standard. Ultimi 5 minuti: IMMAGINA DI MORIRE STASERA. Non domani. Stasera. Con cosa te ne vai? Cosa hai prodotto di reale in questa vita? Non cosa hai 'fatto' — cosa hai PRODOTTO INTERIORMENTE? Se la risposta è 'niente', bene. Ora sai dove sei." },
+      { time: "06:00", cat: "corpo", text: "45 minuti oggi. 20 minuti corsa o camminata velocissima + 5 serie di: 12 flessioni + 20 squat + 10 affondi per gamba + 45 secondi plank. Vai oltre il punto in cui vuoi fermarti. Quando il corpo dice 'basta', fai un'altra serie." },
+      { time: "06:30", cat: "colazione", text: "Colazione consapevole." },
+      { time: "Tutto il giorno", cat: "compito", text: "Comportati come se fosse L'ULTIMO GIORNO. Non in modo melodrammatico — in modo PRECISO. Lava i piatti come se fosse l'ultima volta. Parla con un collega come se fosse l'ultima volta. Guarda il cielo come se fosse l'ultima volta. Nota come cambia la qualità dell'attenzione." },
+      { time: "21:00", cat: "registro", text: "RICAPITOLAZIONE CICLO 1. Rileggi TUTTI i registri dei 6 giorni. Rispondi: 1) Cosa ho scoperto sulla mia macchina? 2) Qual è il mio automatismo dominante? 3) Qual è la mia emozione negativa dominante? 4) C'è stato un momento di presenza reale? 5) Su una scala da 1 a 10, quanto sono addormentato?" },
+      { time: "21:30", cat: "sera", text: "Scansione corporea. Stasera, dopo la scansione, resta sdraiato nel buio per 10 minuti. Non fare nulla. Non pensare. Non rilassarti. Resta SVEGLIO nel buio. Solo presente." }
+    ],
+    journalPrompts: "RICAPITOLAZIONE CICLO 1: Cosa ho scoperto sulla mia macchina? Automatismo dominante? Emozione negativa dominante? Momento di presenza reale? Da 1 a 10, quanto sono addormentato?"
+  },
+
+  // CYCLE 2: "CREO ATTRITO"
+  {
+    day: 7, cycle: 2, cycleName: "Creo Attrito", cycleTheme: "Sofferenza volontaria e super-sforzo",
+    title: "Il Giorno del Contrario",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia. Oggi TUTTO al contrario." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 20 minuti. Osservazione standard. Dalla seconda settimana, l'esercizio base lo fai in automatico. Se ti accorgi che 'diventa facile', aggiungi: tieni gli occhi semiaperti, fissando un punto a terra a 1 metro. Non chiudere gli occhi." },
+      { time: "06:00", cat: "corpo", text: "Se di solito cammini, CORRI. Se di solito corri, FAI YOGA o stretching lentissimo. Se di solito fai esercizi a corpo libero, vai a camminare in un posto dove non sei MAI stato. 30 minuti. L'opposto esatto della tua abitudine." },
+      { time: "06:30", cat: "colazione", text: "Se bevi caffè, NON berlo. Se non fai colazione, falla abbondante. Se di solito mangi dolce, mangia salato. TUTTO al contrario." },
+      { time: "Tutto il giorno", cat: "compito", text: "IL GIORNO DEL CONTRARIO TOTALE: Se sei gentile con tutti, sii diretto e brusco (non cattivo). Se sei timido, parla con 3 sconosciuti. Se ascolti musica sempre, silenzio totale. Se stai seduto, lavora in piedi. Se usi l'ascensore, scale. Se mangi al solito posto, vai altrove. OGNI ABITUDINE ROVESCIATA è un fossato scavato nella meccanicità. La resistenza che senti è la misura della tua prigione." },
+      { time: "21:00", cat: "registro", text: "Quali abitudini hai rovesciato? Quali hanno opposto la resistenza più forte? Quale rovesciamento ti ha fatto scoprire qualcosa di nuovo?" },
+      { time: "21:30", cat: "sera", text: "Scansione corporea + respiro 4-4-4-4 per 10 minuti." }
+    ],
+    journalPrompts: "Lista delle abitudini rovesciate. Quale resistenza è stata più forte? Cosa ho scoperto facendo il contrario?"
+  },
+  {
+    day: 8, cycle: 2, cycleName: "Creo Attrito", cycleTheme: "Sofferenza volontaria e super-sforzo",
+    title: "Il Super-Sforzo",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia. Oggi vai OLTRE i tuoi limiti." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 25 minuti oggi (5 in più). Osservazione standard con occhi semiaperti." },
+      { time: "06:00", cat: "corpo", text: "SUPER-SFORZO: il lavoro fisico deve andare OLTRE il punto in cui vuoi fermarti. 40 minuti: 10 minuti corsa, poi 8 serie di: 15 flessioni + 20 squat + 10 burpees. Quando il corpo dice 'basta', FAI UN'ALTRA SERIE. Poi un'altra. Il super-sforzo è dove la trasformazione avviene. Solo oltre la soglia qualcosa di nuovo si cristallizza." },
+      { time: "06:30", cat: "colazione", text: "Colazione consapevole, mano non dominante." },
+      { time: "Tutto il giorno", cat: "compito", text: "Prendi il compito più SGRADEVOLE che stai rimandando — quello che eviti da settimane. Le bollette. La telefonata difficile. Pulire quel posto. Quel documento. Quella email. FALLO OGGI. COMPLETAMENTE. SENZA LASCIARE RESIDUI. 'Chi fa la festa la faccia fino in fondo, compresi porto e imballaggio.' Se ne hai più di uno, fanne almeno 2." },
+      { time: "21:00", cat: "registro", text: "Quale compito sgradevole hai completato? Come ti sei sentito DURANTE (non dopo)? Dove nel corpo hai sentito la resistenza? Il super-sforzo fisico: in quale momento esatto hai voluto smettere e non l'hai fatto?" },
+      { time: "21:30", cat: "sera", text: "Scansione corporea. Oggi il corpo sarà stanco. Sentilo. Non consolarlo. Ringrazialo." }
+    ],
+    journalPrompts: "Compito sgradevole completato — quale? Come mi sentivo durante? Momento esatto in cui volevo fermarmi nel super-sforzo e non l'ho fatto. Come mi sento ora?"
+  },
+  {
+    day: 9, cycle: 2, cycleName: "Creo Attrito", cycleTheme: "Sofferenza volontaria e super-sforzo",
+    title: "Nutrire il Lupo Giusto",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia. Oggi lavori sul dolore più grande. Non scappare." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 20 minuti. Oggi VOLONTARIAMENTE richiama un ricordo con la tua ragazza. Non per crogiolarti. Per OSSERVARE. Senti il dolore nel corpo. Ora SEPARA IL DOLORE DALLA PERSONA. Il dolore è tuo, non è 'di lei' o 'per lei'. È energia emozionale grezza. Quando arriva la narrazione ('mi ha lasciato, non sono abbastanza, perché'), TORNA alla sensazione pura nel corpo. Ripeti per 20 minuti." },
+      { time: "06:00", cat: "corpo", text: "30 minuti camminata veloce + doccia fredda (2 minuti sotto il freddo massimo). Mentre l'acqua fredda ti colpisce, SENTI il dolore della separazione nel corpo E il freddo simultaneamente. Due sensazioni, una attenzione." },
+      { time: "06:30", cat: "colazione", text: "Colazione consapevole in silenzio." },
+      { time: "Tutto il giorno", cat: "compito", text: "Ogni volta che PENSI A LEI oggi (e ci penserai), fai questo PROTOCOLLO: 1) Senti DOVE il dolore vive nel corpo. 2) Inspira profondamente IN quel punto. 3) Nell'espirazione lascia andare SOLO LA NARRAZIONE, non il sentire. La narrazione è 'mi ha lasciato, non sono abbastanza.' Il sentire è la sensazione cruda nel petto. TIENI il sentire, LASCIA la storia. Ogni volta." },
+      { time: "21:00", cat: "registro", text: "Quante volte hai pensato a lei? Quante volte hai applicato il protocollo? Sei riuscito a separare la sensazione dalla storia, anche per un istante? Com'è l'energia del dolore quando togli le parole?" },
+      { time: "21:30", cat: "sera", text: "Scansione corporea. Quando arrivi al punto dove vive il dolore, resta lì per 5 minuti. Respira IN quel punto. Non mandarlo via. Trasformalo in attenzione." }
+    ],
+    journalPrompts: "Quante volte ho pensato a lei? Protocollo applicato quante volte? Sono riuscito a separare sensazione da storia? Come cambia il dolore quando togli la narrazione?"
+  },
+  {
+    day: 10, cycle: 2, cycleName: "Creo Attrito", cycleTheme: "Sofferenza volontaria e super-sforzo",
+    title: "Il Laboratorio degli Altri",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 20 minuti. Osservazione standard con occhi semiaperti." },
+      { time: "06:00", cat: "corpo", text: "30 minuti: 10 minuti corsa + movimento a 3 ritmi (braccio dx su/giù, braccio sx apri/chiudi, piedi marciano — 3 ritmi diversi) per 10 minuti + 10 minuti di stretching lento sentendo ogni muscolo." },
+      { time: "06:30", cat: "colazione", text: "Colazione consapevole." },
+      { time: "Tutto il giorno", cat: "compito", text: "DUE COMPITI RELAZIONALI OBBLIGATORI. 1) CON QUALCUNO CHE TI IRRITA: osservalo come il tuo insegnante migliore. Quello che ti irrita in lui/lei è qualcosa che non vuoi vedere in te stesso. Oggi NON reagire alla sua provocazione. Senti l'irritazione nel corpo, non esprimerla, e chiediti: dove ho IO la stessa qualità? 2) FAI QUALCOSA PER QUALCUNO che richieda sforzo reale e che NON venga riconosciuto. Anonimo. Invisibile. Nessuna gratificazione della vanità." },
+      { time: "21:00", cat: "registro", text: "Chi ti ha irritato? Cosa hai visto di te in quella persona? Quale azione anonima hai compiuto? Come si è sentita la vanità quando non è stata nutrita?" },
+      { time: "21:30", cat: "sera", text: "Scansione corporea + 5 minuti di domanda sospesa: 'Chi è quello che osserva?'" }
+    ],
+    journalPrompts: "Chi mi ha irritato e cosa ho visto di me? Azione anonima compiuta — quale? Come si è sentita la vanità non nutrita? Cosa ho imparato dagli altri oggi?"
+  },
+  {
+    day: 11, cycle: 2, cycleName: "Creo Attrito", cycleTheme: "Sofferenza volontaria e super-sforzo",
+    title: "Il Digiuno Totale delle Impressioni",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia. Spegni il telefono. Letteralmente SPEGNILO. Non in silenzioso — SPENTO." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 25 minuti. Senza telefono, l'esercizio sarà diverso. Nota se il corpo cerca il telefono automaticamente. Quell'impulso è una dipendenza identica alla nicotina." },
+      { time: "06:00", cat: "corpo", text: "45 minuti oggi. Esci a piedi. Cammina in un posto naturale se possibile — parco, fiume, collina. Cammina SENZA meta. Senza musica. Senza podcast. Solo i suoni del mondo. Guarda gli alberi. Guarda il cielo. Guarda le facce delle persone come se le vedessi per la prima volta." },
+      { time: "06:30", cat: "colazione", text: "Colazione consapevole. NIENTE TELEFONO TUTTO IL GIORNO." },
+      { time: "Tutto il giorno", cat: "compito", text: "DIGIUNO TOTALE: niente telefono, niente internet, niente social, niente notizie, niente musica registrata, niente TV, niente podcast, niente YouTube. PER L'INTERA GIORNATA. Solo il mondo fisico reale. Persone fisiche. Lavoro manuale. Natura. Silenzio. Osserva l'agitazione nelle prime ore — è l'astinenza del centro intellettuale inferiore. La noia è la porta. ATTRAVERSALA." },
+      { time: "21:00", cat: "registro", text: "Scrivi A MANO (non sul telefono, è ancora spento): com'è stata la giornata senza impressioni artificiali? Dove è arrivata l'agitazione? Cosa c'era DALL'ALTRA PARTE della noia? Hai scoperto qualcosa?" },
+      { time: "21:30", cat: "sera", text: "Scansione corporea nel silenzio totale. Nota la qualità del silenzio senza dispositivi elettronici nella stanza. Telefono resta spento fino a domattina." }
+    ],
+    journalPrompts: "Giornata senza impressioni artificiali: livello di agitazione (1-10) per ogni ora? Cosa c'era dall'altra parte della noia? Cosa ho scoperto che il rumore digitale copriva?"
+  },
+  {
+    day: 12, cycle: 2, cycleName: "Creo Attrito", cycleTheme: "Sofferenza volontaria e super-sforzo",
+    title: "Ricapitolazione Ciclo 2",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia. Riaccendi il telefono solo DOPO l'esercizio mattutino." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 20 minuti. Osservazione standard. Oggi nota se la qualità dell'attenzione è diversa rispetto al Giorno 1. Anche minimamente." },
+      { time: "06:00", cat: "corpo", text: "SUPER-SFORZO: 40 minuti. 15 minuti corsa + 6 serie di: 15 flessioni + 20 squat + 10 burpees + 45 secondi plank. Quando vuoi fermarti, un'altra serie. Doccia fredda alla fine (2 minuti freddo massimo)." },
+      { time: "06:30", cat: "colazione", text: "Colazione consapevole, mano non dominante." },
+      { time: "Tutto il giorno", cat: "compito", text: "Giornata normale ma con ATTENZIONE MASSIMA. Porta il quaderno. Conta gli automatismi come il Giorno 1. Confronta il numero con il primo giorno. È diminuito? Aumentato? (Se aumentato, buon segno: vedi di più, non fai di più.)" },
+      { time: "21:00", cat: "registro", text: "RICAPITOLAZIONE CICLO 2: 1) Qual è stato il momento di massimo attrito? 2) Ho trasformato almeno un'emozione negativa in osservazione? 3) Il rapporto con il dolore per lei è cambiato? Come? 4) Dove ho ceduto? Dove la macchina ha vinto? 5) Confronto automatismi Giorno 1 vs Giorno 12." },
+      { time: "21:30", cat: "sera", text: "Scansione corporea + domanda: 'Sono più sveglio di 12 giorni fa o mi sto raccontando una favola?'" }
+    ],
+    journalPrompts: "RICAPITOLAZIONE CICLO 2: Momento di massimo attrito? Emozione trasformata? Dolore per lei — com'è cambiato? Dove la macchina ha vinto? Confronto automatismi Giorno 1 vs oggi."
+  },
+
+  // CYCLE 3: "I TRE CENTRI"
+  {
+    day: 13, cycle: 3, cycleName: "I Tre Centri", cycleTheme: "Armonizzazione intelletto-emozione-corpo",
+    title: "Il Centro Intellettuale Reale",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 20 minuti. Osservazione con occhi semiaperti." },
+      { time: "06:00", cat: "corpo", text: "30 minuti camminata contando i passi + 10 minuti di movimento a 3 ritmi." },
+      { time: "06:30", cat: "colazione", text: "Colazione consapevole in silenzio." },
+      { time: "Tutto il giorno", cat: "compito", text: "Prendi un CONCETTO che credi di 'sapere': l'AMORE. Scrivi tutto quello che 'sai' sull'amore. Riempi almeno una pagina. Poi CANCELLA TUTTO e scrivi: 'Io non so nulla dell'amore.' Ora, partendo dal vuoto, scrivi SOLO ciò che hai VERIFICATO CON LA TUA ESPERIENZA DIRETTA — non ciò che ti hanno detto, insegnato, o che hai letto. Se non resta nulla, hai scoperto che il tuo centro intellettuale è pieno di mobili che non ti appartengono." },
+      { time: "21:00", cat: "registro", text: "Quanto hai scritto 'per sentito dire' vs quanto per esperienza diretta? Cosa rimane quando togli tutto ciò che non è veramente tuo? Come ti senti davanti al vuoto?" },
+      { time: "21:30", cat: "sera", text: "Scansione corporea + 5 minuti di 'chi è quello che osserva?'" }
+    ],
+    journalPrompts: "Cosa 'sapevo' dell'amore che non era mio? Cosa resta quando tolgo tutto il sentito dire? Come mi sento davanti al vuoto della non-conoscenza?"
+  },
+  {
+    day: 14, cycle: 3, cycleName: "I Tre Centri", cycleTheme: "Armonizzazione intelletto-emozione-corpo",
+    title: "Il Centro Emozionale Reale",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 20 minuti. Oggi focus sulla ricerca della MERAVIGLIA. Non l'emozione drammatica — la meraviglia silenziosa. Guarda le tue mani durante la meditazione. Guardale come se non le avessi mai viste. 5 dita che si muovono indipendentemente. Pelle, ossa, tendini. Miracolo biologico." },
+      { time: "06:00", cat: "corpo", text: "45 minuti all'aperto. Oggi NIENTE performance. Cammina lentamente. Fermati davanti a un albero. Guardalo per 3 minuti interi. Non pensare 'è un albero'. GUARDALO. Le venature della corteccia. Il movimento delle foglie. Le radici che vanno sotto terra. Il centro emozionale superiore si nutre di meraviglia, non di dramma." },
+      { time: "06:30", cat: "colazione", text: "Colazione consapevole. Guarda il cibo con meraviglia — era un seme, è diventato una pianta, è diventato il tuo nutrimento." },
+      { time: "Tutto il giorno", cat: "compito", text: "CERCA LA MERAVIGLIA in 5 cose ordinarie durante la giornata. L'acqua del rubinetto (viene da montagne lontane, attraverso tubi sotto la città, fino al tuo bicchiere). La luce elettrica. Il viso di uno sconosciuto. Il fatto che il tuo cuore batte senza che tu glielo chieda. Scrivi le 5 meraviglie trovate." },
+      { time: "21:00", cat: "registro", text: "Le 5 meraviglie. Qual è stata la più intensa? C'è una differenza tra l'emozione della meraviglia e l'emozione del dramma (come il dolore per lei)? Quale si sente più 'vera'?" },
+      { time: "21:30", cat: "sera", text: "Scansione corporea. Cerca dove nel corpo la meraviglia vive. Confronta con dove vive il dolore. Sono nello stesso posto o in posti diversi?" }
+    ],
+    journalPrompts: "Le 5 meraviglie trovate. Quale la più intensa? Differenza tra emozione della meraviglia e emozione del dramma? Dove vive la meraviglia nel corpo?"
+  },
+  {
+    day: 15, cycle: 3, cycleName: "I Tre Centri", cycleTheme: "Armonizzazione intelletto-emozione-corpo",
+    title: "Il Centro Motorio Reale",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 20 minuti. Osservazione standard." },
+      { time: "06:00", cat: "corpo", text: "Oggi IMPARA UN'ABILITÀ FISICA NUOVA. Scegline UNA e dedicaci 30 minuti: giocoleria con 3 palline (o arance), equilibrio su un piede a occhi chiusi (obiettivo: 2 minuti), camminare su una linea dritta per 10 metri mettendo un piede esattamente davanti all'altro, oppure impara 10 nodi marinari diversi con una corda. Il centro motorio si sveglia SOLO con ciò che non ha mai fatto." },
+      { time: "06:30", cat: "colazione", text: "Colazione con mano non dominante. Oggi TUTTA la giornata con la mano non dominante per ogni atto possibile." },
+      { time: "Tutto il giorno", cat: "compito", text: "USA LA MANO NON DOMINANTE per tutto: aprire le porte, scrivere appunti, bere, mangiare, lavarti i denti. Ogni gesto diventa nuovo, lento, goffo. Perfetto. La goffaggine è presenza forzata. Inoltre: durante il lavoro, ogni ora, alzati e fai 20 squat + 10 flessioni. Non importa dove sei. Anche se i colleghi ti guardano strano. Anzi, MEGLIO se ti guardano strano." },
+      { time: "21:00", cat: "registro", text: "Com'è stato usare la mano non dominante? L'abilità nuova: a che punto sei? Dove nel corpo hai sentito la frustrazione dell'incompetenza? La frustrazione ti ha dato energia o te l'ha tolta?" },
+      { time: "21:30", cat: "sera", text: "Scansione corporea. Nota le parti del corpo che hai usato diversamente oggi. Senti la differenza." }
+    ],
+    journalPrompts: "Esperienza mano non dominante? Abilità nuova — progresso? Dove vive la frustrazione dell'incompetenza nel corpo? Mi ha dato energia o me l'ha tolta?"
+  },
+  {
+    day: 16, cycle: 3, cycleName: "I Tre Centri", cycleTheme: "Armonizzazione intelletto-emozione-corpo",
+    title: "I Tre Centri Insieme",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia." },
+      { time: "05:35", cat: "esercizio", text: "L'ESERCIZIO SUPREMO — 20 minuti: CORPO: cammina lentamente nella stanza, sentendo ogni contatto del piede col suolo. MENTE: conta all'indietro da 200 a 0 per 3 (200, 197, 194...). EMOZIONE: mantieni interiormente un sentimento di GRATITUDINE senza oggetto — solo il sapore della gratitudine. Tre centri, tre compiti, simultaneamente. Quando uno cade, rialzalo. Quando cadono tutti, ricomincia. QUESTO è il Triamazikamno applicato." },
+      { time: "06:00", cat: "corpo", text: "30 minuti: 10 minuti corsa + 10 minuti movimento a 3 ritmi + 10 minuti stretching con attenzione su ogni muscolo." },
+      { time: "06:30", cat: "colazione", text: "Colazione sacra. 30 morsi per boccone." },
+      { time: "Tutto il giorno", cat: "compito", text: "Ogni 2 ore durante la giornata, fermati e rifai l'esercizio dei 3 centri per 5 minuti: cammina lenta + conteggio + gratitudine. 5 minuti, poi torna alla vita. Conta quante volte riesci a tenere tutti e 3 i centri attivi simultaneamente per più di 30 secondi." },
+      { time: "21:00", cat: "registro", text: "L'esercizio dei 3 centri: quanto è durato il momento più lungo in cui tutti e 3 funzionavano insieme? Com'era? Descrivilo." },
+      { time: "21:30", cat: "sera", text: "Scansione corporea + 5 minuti dell'esercizio dei 3 centri sdraiato (senza camminare, solo attenzione al respiro + conteggio + gratitudine)." }
+    ],
+    journalPrompts: "Momento più lungo con tutti e 3 i centri attivi — quanto è durato? Com'era? Quale centro cade per primo? Quante volte ho rifatto l'esercizio durante il giorno?"
+  },
+  {
+    day: 17, cycle: 3, cycleName: "I Tre Centri", cycleTheme: "Armonizzazione intelletto-emozione-corpo",
+    title: "Parlare Con il Corpo",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia." },
+      { time: "05:35", cat: "esercizio", text: "ESERCIZIO EGOKULNAZARNIANO — 25 minuti. Sdraiato. Porta l'attenzione al CUORE. Parlagli: 'Ti sento. Lavori per me da quando sono nato senza che ti abbia mai ringraziato. Ti sento.' Poi al FEGATO. Poi allo STOMACO. Poi ai POLMONI. Poi ai RENI. Poi alle GAMBE. Poi alle MANI. Senti ogni parte. Ringrazia ogni parte. 2-3 minuti per organo." },
+      { time: "06:00", cat: "corpo", text: "30 minuti camminata con attenzione su ogni parte del corpo alternata: 2 minuti attenzione ai piedi, 2 minuti alle gambe, 2 minuti al bacino, 2 minuti allo stomaco, 2 minuti al petto, 2 minuti alle braccia, 2 minuti al viso, 2 minuti a tutto il corpo insieme. Ripeti." },
+      { time: "06:30", cat: "colazione", text: "Mangia sentendo il cibo entrare nello stomaco. Ringrazia lo stomaco mentre lavora." },
+      { time: "Tutto il giorno", cat: "compito", text: "Oggi ogni volta che il corpo ti manda un SEGNALE (fame, sete, stanchezza, dolore, tensione), FERMATI e ASCOLTALO per 30 secondi prima di reagire. Non ignorare il segnale, non reagire automaticamente. Ascolta. Poi rispondi consapevolmente. Il corpo è un alleato, non un asino da picchiare." },
+      { time: "21:00", cat: "registro", text: "Quali segnali del corpo ho ascoltato oggi? Quale organo mi ha 'parlato' più forte durante l'esercizio mattutino? C'è una parte del corpo che sento trascurata?" },
+      { time: "21:30", cat: "sera", text: "Ripeti l'esercizio Egokulnazarniano. Confronta la qualità con il mattino. È diversa?" }
+    ],
+    journalPrompts: "Segnali del corpo ascoltati? Organo che ha 'parlato' più forte? Parte del corpo trascurata? Differenza tra esercizio Egokulnazarniano mattina e sera?"
+  },
+  {
+    day: 18, cycle: 3, cycleName: "I Tre Centri", cycleTheme: "Armonizzazione intelletto-emozione-corpo",
+    title: "Ricapitolazione Ciclo 3",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 20 minuti. Osservazione standard. Nota come è cambiata la qualità dell'osservazione dalla prima settimana." },
+      { time: "06:00", cat: "corpo", text: "SUPER-SFORZO: 45 minuti. 15 minuti corsa + 8 serie di: 15 flessioni + 20 squat + 10 burpees + 45 secondi plank + 10 affondi per gamba. Quando vuoi fermarti, 2 serie in più. Doccia fredda finale (3 minuti freddo massimo oggi)." },
+      { time: "06:30", cat: "colazione", text: "Colazione sacra in silenzio." },
+      { time: "Tutto il giorno", cat: "compito", text: "Riprova l'abilità fisica nuova del Giorno 15 per almeno 15 minuti. Sei migliorato? Inoltre: pratica l'esercizio dei 3 centri ogni 2 ore per 5 minuti." },
+      { time: "21:00", cat: "registro", text: "RICAPITOLAZIONE CICLO 3: 1) Quale centro è il più debole? 2) Quale domina e schiaccia gli altri? 3) Ho avuto momenti in cui tutti e 3 funzionavano insieme? Com'era? 4) Il rapporto con il mio corpo è cambiato? 5) Il rapporto con le mie emozioni è cambiato?" },
+      { time: "21:30", cat: "sera", text: "Esercizio Egokulnazarniano + respiro 4-4-4-4 per 10 minuti." }
+    ],
+    journalPrompts: "RICAPITOLAZIONE CICLO 3: Centro più debole? Centro dominante? Momenti con tutti e 3 — com'era? Rapporto con il corpo? Rapporto con le emozioni?"
+  },
+
+  // CYCLE 4: "LA SOFFERENZA VOLONTARIA"
+  {
+    day: 19, cycle: 4, cycleName: "La Sofferenza Volontaria", cycleTheme: "Trasformazione alchemica del dolore",
+    title: "La Lettera Mai Spedita",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia. Oggi è il giorno più duro finora. Non scappare." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 20 minuti. Osservazione con focus sulle emozioni. Prepara il terreno per quello che verrà." },
+      { time: "06:00", cat: "corpo", text: "30 minuti camminata veloce. Muovi l'energia nel corpo prima dell'esercizio emotivo." },
+      { time: "06:30", cat: "colazione", text: "Colazione consapevole." },
+      { time: "Mattina/Pomeriggio", cat: "compito", text: "LA LETTERA: Siediti con carta e penna (NON computer). Scrivi una lettera a lei. Scrivi TUTTO. La rabbia. Il dolore. L'amore. Il tradimento. La confusione. Le domande senza risposta. Le cose che non hai mai detto. Le cose che vorresti urlare. Non censurare NULLA. Scrivi finché non hai finito — anche se ci vogliono 2 ore." },
+      { time: "Pomeriggio", cat: "compito", text: "Quando hai finito, mettiti IN PIEDI davanti a uno SPECCHIO. Leggi la lettera AD ALTA VOCE guardandoti negli occhi. GUARDA LA TUA FACCIA MENTRE LEGGI. Chi è quell'uomo nello specchio? Dopo, BRUCIA LA LETTERA. Non spedirla MAI. L'esercizio non è per lei. È per TE. Stai estraendo il veleno dalle tue cellule." },
+      { time: "21:00", cat: "registro", text: "Cosa hai provato scrivendo? Cosa hai visto nello specchio? Cosa hai provato bruciando la lettera? C'è qualcosa che è uscito che non sapevi di avere dentro?" },
+      { time: "21:30", cat: "sera", text: "Scansione corporea. Dove viveva il veleno prima? È ancora lì? È cambiato? Come ti senti adesso rispetto a stamattina?" }
+    ],
+    journalPrompts: "Cosa ho provato scrivendo? Cosa ho visto nello specchio? Cosa ho provato bruciando? Cosa è uscito che non sapevo di avere? Come mi sento ora?"
+  },
+  {
+    day: 20, cycle: 4, cycleName: "La Sofferenza Volontaria", cycleTheme: "Trasformazione alchemica del dolore",
+    title: "La Vergogna Volontaria",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia. Oggi la tua vanità verrà calpestata. TU la calpesterai." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 20 minuti. Osservazione standard." },
+      { time: "06:00", cat: "corpo", text: "30 minuti corsa + doccia fredda 3 minuti." },
+      { time: "06:30", cat: "colazione", text: "Colazione consapevole." },
+      { time: "Tutto il giorno", cat: "compito", text: "SHOCK DELLA VERGOGNA — scegli ALMENO 2 di questi: 1) Chiedi indicazioni stradali a 5 persone diverse per lo stesso posto (anche se lo conosci). 2) Vai in un bar, siediti da solo SENZA telefono per 1 ora, guardando la gente. 3) Fai un complimento genuino e specifico a 3 sconosciuti. 4) Canta una canzone a voce alta mentre cammini per strada (non urlare, ma che si senta). 5) Chiedi a un collega o conoscente: 'Qual è il mio difetto più grande secondo te?' e ASCOLTA senza difenderti. Il punto: OSSERVA IL PANICO DELLA VANITÀ. Senti dove la vergogna vive nel corpo. Quell'energia è carburante." },
+      { time: "21:00", cat: "registro", text: "Quali esercizi hai fatto? Dove nel corpo hai sentito la vergogna? Il panico della vanità — com'era? Cosa è successo DOPO che il momento è passato? Ti sei sentito più libero o più prigioniero?" },
+      { time: "21:30", cat: "sera", text: "Scansione corporea. Cerca i residui della vergogna nel corpo. Respiraci dentro. Trasformali in leggerezza." }
+    ],
+    journalPrompts: "Esercizi di vergogna completati? Dove viveva il panico della vanità nel corpo? Cosa è successo dopo che il momento è passato? Mi sono sentito più libero?"
+  },
+  {
+    day: 21, cycle: 4, cycleName: "La Sofferenza Volontaria", cycleTheme: "Trasformazione alchemica del dolore",
+    title: "La Rinuncia Volontaria",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 25 minuti. Osservazione + domanda: 'A cosa sono schiavo?'" },
+      { time: "06:00", cat: "corpo", text: "SUPER-SFORZO: 40 minuti. Corsa + 8 serie ad alta intensità + doccia fredda." },
+      { time: "06:30", cat: "colazione", text: "Colazione consapevole." },
+      { time: "Tutto il giorno", cat: "compito", text: "IL PEPERONCINO ROSSO: Identifica la tua abitudine tossica principale — quella che mantieni solo perché 'l'hai pagata sei soldi'. Telefono la mattina? Scrolling infinito? Cibo spazzatura la sera? Pornografia? Lamento cronico? Fumo? Alcol? DA OGGI PER I PROSSIMI 15 GIORNI (fino alla fine del percorso): ELIMINALA COMPLETAMENTE. Non gradualmente. COMPLETAMENTE. La sofferenza che senti è volontaria. Trasformala in attenzione. Ogni volta che l'impulso arriva, senti dove vive nel corpo, respira in quel punto per 30 secondi, poi FAI QUALCOS'ALTRO." },
+      { time: "21:00", cat: "registro", text: "Qual è il tuo peperoncino rosso? Quante volte oggi l'impulso è arrivato? Quante volte hai ceduto? Quante resistito? Dove vive l'impulso nel corpo?" },
+      { time: "21:30", cat: "sera", text: "Scansione corporea + esercizio dei 3 centri sdraiato (respiro + conteggio + gratitudine) per 10 minuti." }
+    ],
+    journalPrompts: "Il mio peperoncino rosso — qual è? Impulso arrivato quante volte? Ceduto/resistito? Dove vive l'impulso nel corpo?"
+  },
+  {
+    day: 22, cycle: 4, cycleName: "La Sofferenza Volontaria", cycleTheme: "Trasformazione alchemica del dolore",
+    title: "Il Perdono Come Atto di Potere",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 20 minuti. Osservazione con focus sulle emozioni legate al risentimento." },
+      { time: "06:00", cat: "corpo", text: "30 minuti camminata veloce + 10 minuti stretching." },
+      { time: "06:30", cat: "colazione", text: "Colazione consapevole in silenzio." },
+      { time: "Mattina", cat: "compito", text: "L'INVENTARIO DEL RISENTIMENTO: Scrivi i nomi di TUTTE le persone verso cui provi risentimento. Lei. Il capo. I genitori. Gli amici che non ci sono stati. CHIUNQUE. Per ognuno scrivi: 'Ti libero non perché te lo meriti, ma perché IO non posso più permettermi il lusso di portare questo peso.' Per ognuno chiediti: cosa ho IMPARATO da questa persona che non avrei potuto imparare altrimenti?" },
+      { time: "Pomeriggio", cat: "compito", text: "Domanda brutale: se la tua ragazza non ti avesse lasciato, saresti qui a fare questo lavoro? No. LEI È STATA IL TUO SHOCK. Non lo sa, non l'ha fatto per questo, ma il risultato è lo stesso. Scrivi: 'Grazie per lo shock. Lo sto usando.'" },
+      { time: "21:00", cat: "registro", text: "Lista dei risentimenti liberati. Per ognuno: cosa ho imparato? Mi sento più leggero o sto mentendo a me stesso? Il perdono è stato un atto reale o un altro auto-tranquillante?" },
+      { time: "21:30", cat: "sera", text: "Scansione corporea. Cerca dove viveva il risentimento. C'è ancora? È cambiato?" }
+    ],
+    journalPrompts: "Risentimenti liberati — lista. Cosa ho imparato da ognuno? Mi sento più leggero o mento? Il perdono è stato reale o auto-tranquillante?"
+  },
+  {
+    day: 23, cycle: 4, cycleName: "La Sofferenza Volontaria", cycleTheme: "Trasformazione alchemica del dolore",
+    title: "La Preghiera",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia." },
+      { time: "05:35", cat: "esercizio", text: "Siediti. Schiena dritta. Occhi chiusi. Oggi l'esercizio è LA PREGHIERA DI GURDJIEFF. Ripeti lentamente, sentendo ogni parola, per 20 minuti: 'Signore Creatore e tutti i Suoi assistenti, aiutatemi a ricordare me stesso sempre e ovunque, affinché io possa evitare le azioni involontarie, poiché io non desidero essere uno schiavo.' Non importa a chi lo dici. Importa che qualcosa in te lo SENTA. Se piangi, bene. Quelle sono lacrime reali." },
+      { time: "06:00", cat: "corpo", text: "30 minuti camminata lenta e meditativa. Ripeti la preghiera interiormente ad ogni passo." },
+      { time: "06:30", cat: "colazione", text: "Colazione in silenzio. Prima di mangiare, ripeti la preghiera una volta." },
+      { time: "Tutto il giorno", cat: "compito", text: "Porta la preghiera con te. Ogni ora, fermati 30 secondi e ripetila interiormente. Non come formula vuota — come RICHIESTA SINCERA. 'Non desidero essere uno schiavo.' Sentilo. Osserva quante volte durante il giorno SEI schiavo: di un'abitudine, di un'emozione, di un'opinione altrui, di un impulso. Ogni volta che te ne accorgi, la preghiera." },
+      { time: "21:00", cat: "registro", text: "Come ha cambiato la qualità della giornata portare la preghiera? Ci sono state lacrime? Cosa ho sentito? Di cosa sono stato schiavo oggi?" },
+      { time: "21:30", cat: "sera", text: "Ripeti la preghiera 7 volte lentamente. Poi scansione corporea nel silenzio." }
+    ],
+    journalPrompts: "La preghiera — cosa ho sentito? Lacrime? Di cosa sono stato schiavo oggi? Come cambia la giornata portando questa intenzione?"
+  },
+  {
+    day: 24, cycle: 4, cycleName: "La Sofferenza Volontaria", cycleTheme: "Trasformazione alchemica del dolore",
+    title: "Ricapitolazione Ciclo 4",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 20 minuti. Preghiera + osservazione." },
+      { time: "06:00", cat: "corpo", text: "SUPER-SFORZO MASSIMO: 50 minuti. 15 minuti corsa + 10 serie ad alta intensità (flessioni/squat/burpees/plank/affondi). Vai oltre. Ancora oltre. Doccia fredda 3 minuti." },
+      { time: "06:30", cat: "colazione", text: "Colazione sacra." },
+      { time: "Tutto il giorno", cat: "compito", text: "Giornata con attenzione massima. Quaderno in tasca. Conta automatismi. Preghiera ogni ora. Peperoncino rosso: resistito o ceduto?" },
+      { time: "21:00", cat: "registro", text: "RICAPITOLAZIONE CICLO 4: 1) Il dolore per lei — com'è adesso rispetto al Giorno 1? 2) Ho bruciato la lettera? Cosa è cambiato? 3) La vergogna volontaria — cosa mi ha insegnato? 4) Sofferenza meccanica vs volontaria — so distinguerle ora? 5) Il peperoncino rosso — come va?" },
+      { time: "21:30", cat: "sera", text: "Scansione corporea + preghiera + 5 minuti di 'chi è quello che osserva?'" }
+    ],
+    journalPrompts: "RICAPITOLAZIONE CICLO 4: Dolore per lei ora vs Giorno 1? Lettera bruciata — effetto? Vergogna volontaria — insegnamento? Sofferenza meccanica vs volontaria? Peperoncino rosso?"
+  },
+
+  // CYCLE 5: "CHI SONO IO?"
+  {
+    day: 25, cycle: 5, cycleName: "Chi Sono Io?", cycleTheme: "La ricerca dell'Essenza dietro la Personalità",
+    title: "Lo Strip-Tease dell'Identità",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 20 minuti. Osservazione + preghiera." },
+      { time: "06:00", cat: "corpo", text: "30 minuti corsa o camminata veloce + 10 minuti movimento a 3 ritmi." },
+      { time: "06:30", cat: "colazione", text: "Colazione consapevole." },
+      { time: "Mattina", cat: "compito", text: "Scrivi una lista di TUTTO ciò che pensi di essere: 'Sono un [lavoro].' 'Sono il ragazzo di [nome].' 'Sono uno che [qualità].' 'Sono italiano.' 'Sono intelligente.' 'Sono un fallimento.' TUTTO. Poi per ognuna: questa è ESSENZA o PERSONALITÀ? L'Essenza è ciò con cui sei nato. La Personalità è ciò che ti hanno messo addosso. L'Essenza della maggior parte degli adulti ha smesso di crescere a 6-7 anni." },
+      { time: "Pomeriggio", cat: "compito", text: "CHI ERI A 6 ANNI? Cosa ti piaceva DAVVERO, prima che il mondo ti dicesse cosa doveva piacerti? Con cosa giocavi? Cosa ti faceva ridere? Cosa ti spaventava? Cosa guardavi per ore? Scrivi tutto quello che ricordi. Quell'essenza è ancora in te, sepolta sotto strati di personalità." },
+      { time: "21:00", cat: "registro", text: "Lista Essenza vs Personalità. Chi ero a 6 anni? Cosa mi piaceva davvero? Cosa resta quando tolgo tutto ciò che non è veramente mio?" },
+      { time: "21:30", cat: "sera", text: "Scansione corporea. Cerca quel bambino di 6 anni nel tuo corpo. Dove vive? Senti la sua presenza." }
+    ],
+    journalPrompts: "Essenza vs Personalità — lista. Chi ero a 6 anni? Cosa mi piaceva davvero? Cosa resta quando tolgo tutto?"
+  },
+  {
+    day: 26, cycle: 5, cycleName: "Chi Sono Io?", cycleTheme: "La ricerca dell'Essenza dietro la Personalità",
+    title: "Il Giorno Senza Nome",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia. Oggi NON SEI NESSUNO." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 25 minuti. Oggi non osservare pensieri o emozioni. Cerca di sentire COSA RESTA quando togli il tuo nome, la tua storia, i tuoi problemi, i tuoi ricordi. Cosa c'è sotto tutto questo? Se c'è il vuoto, resta nel vuoto. Se c'è qualcosa, sentilo senza definirlo." },
+      { time: "06:00", cat: "corpo", text: "30 minuti camminata lenta. Cammina come se non avessi una destinazione, un nome, un passato, un futuro. Solo un essere che cammina." },
+      { time: "06:30", cat: "colazione", text: "Mangia come se fosse la prima volta che mangi. Non sai cos'è il cibo. Scoprilo." },
+      { time: "Tutto il giorno", cat: "compito", text: "GIORNO SENZA IDENTITÀ: ogni volta che la tua storia personale cerca di riprendere il controllo — 'ma io devo...', 'ma il mio problema è...', 'ma lei...' — rispondi interiormente: 'Questo non è mio. Io non so chi sono.' Non è dissociazione. È il tentativo di sentire cosa resta quando togli TUTTO ciò che ti è stato detto di essere. Quello che resta, se resta qualcosa, è l'inizio dell'Essenza." },
+      { time: "21:00", cat: "registro", text: "Cosa resta quando togli tutto? Hai trovato qualcosa? Com'era il vuoto? Fa paura o è liberatorio? Quante volte la storia ha cercato di riprendere il controllo?" },
+      { time: "21:30", cat: "sera", text: "Scansione corporea + 10 minuti di domanda sospesa: 'Chi sono io SENZA la mia storia?'" }
+    ],
+    journalPrompts: "Cosa resta quando tolgo tutto? Vuoto o qualcosa? Paura o libertà? Quante volte la storia ha ripreso il controllo?"
+  },
+  {
+    day: 27, cycle: 5, cycleName: "Chi Sono Io?", cycleTheme: "La ricerca dell'Essenza dietro la Personalità",
+    title: "L'Enneagramma del Giorno",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 20 minuti. Osservazione + preghiera." },
+      { time: "06:00", cat: "corpo", text: "40 minuti: 15 minuti corsa + 8 serie ad alta intensità + 5 minuti stretching + doccia fredda." },
+      { time: "06:30", cat: "colazione", text: "Colazione consapevole." },
+      { time: "Tutto il giorno", cat: "compito", text: "MAPPA LA GIORNATA COME UN'OTTAVA: DO = intenzione con cui ti alzi. RE = primo sforzo. MI = dove la prima resistenza appare (QUI SERVE UNO SHOCK o l'ottava muore). FA = sforzo dopo lo shock. SOL = momento di massima energia. LA = inizio del declino. SI = dove serve il secondo shock. DO superiore = conclusione consapevole. Nota DOVE le tue ottave si interrompono. Sempre al MI? Al SI? Comprendere dove muoiono le tue ottave è comprendere perché non finisci mai nulla." },
+      { time: "21:00", cat: "registro", text: "Disegna l'ottava della tua giornata. Dove si è interrotta? Dove serviva lo shock? Lo hai dato? Cosa sarebbe successo se l'avessi dato?" },
+      { time: "21:30", cat: "sera", text: "Scansione corporea + riflessione: le mie ottave di vita (relazioni, progetti, scopi) dove si interrompono di solito?" }
+    ],
+    journalPrompts: "L'ottava della giornata — dove si è interrotta? Dove serviva lo shock? Le mie ottave di vita dove muoiono di solito?"
+  },
+  {
+    day: 28, cycle: 5, cycleName: "Chi Sono Io?", cycleTheme: "La ricerca dell'Essenza dietro la Personalità",
+    title: "Il Corpo di Kesdjan",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 30 minuti oggi. SENTI TE STESSO COME UN TUTTO. Non la mano, non la gamba, non il pensiero — il TUTTO. Come se potessi sentire i confini del tuo essere. Non immaginarlo — SENTILO. C'è una qualità di presenza che è più del corpo fisico. Forse la senti. Forse no. Se non la senti, nota cosa c'è al suo posto: vuoto? Rumore? Paura?" },
+      { time: "06:00", cat: "corpo", text: "30 minuti camminata lenta con attenzione al 'tutto' del corpo simultaneamente. Non una parte — tutte le parti insieme. Cammina come un TUTTO." },
+      { time: "06:30", cat: "colazione", text: "Colazione sacra." },
+      { time: "Tutto il giorno", cat: "compito", text: "Ogni 2 ore: fermati 2 minuti e SENTI TE STESSO COME UN TUTTO. Piedi, gambe, tronco, braccia, testa — tutto insieme. Aggiungi: senti il tuo 'spessore'. Non solo la superficie della pelle — senti DENTRO. Lo spazio interno del corpo. Il volume che occupi nel mondo." },
+      { time: "21:00", cat: "registro", text: "Ho sentito il 'tutto'? Com'era? C'è una qualità diversa tra sentire una parte e sentire il tutto? Cosa c'è oltre il corpo fisico — ho sentito qualcosa?" },
+      { time: "21:30", cat: "sera", text: "Esercizio Egokulnazarniano + sentire il tutto + preghiera. 20 minuti." }
+    ],
+    journalPrompts: "Il 'tutto' — l'ho sentito? Com'era? Differenza tra sentire una parte e sentire il tutto? Oltre il corpo fisico — qualcosa?"
+  },
+  {
+    day: 29, cycle: 5, cycleName: "Chi Sono Io?", cycleTheme: "La ricerca dell'Essenza dietro la Personalità",
+    title: "Il Debito Cosmico",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 20 minuti. Preghiera + osservazione + domanda: 'A cosa serve la mia vita?'" },
+      { time: "06:00", cat: "corpo", text: "45 minuti all'aperto. Cammina in un posto che ami — o in un posto dove non sei mai stato. Cammina con la domanda: 'A cosa serve la mia vita?'" },
+      { time: "06:30", cat: "colazione", text: "Colazione consapevole." },
+      { time: "Mattina", cat: "compito", text: "Gurdjieff diceva che la tua esistenza è un DEBITO. Non una punizione — un debito. Sei qui per PRODURRE qualcosa. Chiediti: se la mia vita servisse a qualcosa di più grande di me, cosa sarebbe? Non la risposta della vanità ('salvare il mondo'). La risposta dell'Essenza. Forse è semplice. Forse è fare bene il tuo mestiere. Forse è imparare ad amare senza possedere." },
+      { time: "Pomeriggio", cat: "compito", text: "Scrivi una DICHIARAZIONE DI INTENTI. Non obiettivi. Non sogni. Una dichiarazione di CIÒ PER CUI SEI DISPOSTO A SOFFRIRE VOLONTARIAMENTE. Quella è la tua direzione. Scrivila su un foglio. Mettila dove la vedi ogni mattina." },
+      { time: "21:00", cat: "registro", text: "La dichiarazione di intenti — cosa hai scritto? È venuta dalla Personalità o dall'Essenza? Per cosa sei disposto a soffrire?" },
+      { time: "21:30", cat: "sera", text: "Preghiera + scansione corporea + 'chi è quello che osserva?' + sentire il tutto. Tutto insieme. 20 minuti." }
+    ],
+    journalPrompts: "Dichiarazione di intenti — dalla Personalità o dall'Essenza? Per cosa sono disposto a soffrire? A cosa serve la mia vita?"
+  },
+  {
+    day: 30, cycle: 5, cycleName: "Chi Sono Io?", cycleTheme: "La ricerca dell'Essenza dietro la Personalità",
+    title: "Ricapitolazione Ciclo 5",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 30 minuti. Tutto ciò che hai imparato: osservazione + preghiera + 3 centri + sentire il tutto." },
+      { time: "06:00", cat: "corpo", text: "SUPER-SFORZO: 50 minuti. Il più duro finora. Corsa + 12 serie ad alta intensità. Vai oltre. Ancora oltre. Poi doccia fredda 3 minuti." },
+      { time: "06:30", cat: "colazione", text: "Colazione sacra." },
+      { time: "Tutto il giorno", cat: "compito", text: "IL GRANDE BILANCIO: Rileggi TUTTI i registri dal Giorno 1 al Giorno 29. Rispondi: 1) Chi ero il Giorno 1 e chi sono oggi? 2) Cosa ho scoperto sulla differenza tra Personalità e Essenza? 3) Quali pratiche hanno prodotto i risultati più forti? 4) Dove ho MENTITO a me stesso nel registro? 5) Sono pronto a continuare o sto già cercando il prossimo auto-tranquillante?" },
+      { time: "21:00", cat: "registro", text: "Il grande bilancio completo." },
+      { time: "21:30", cat: "sera", text: "Preghiera + scansione + sentire il tutto. 20 minuti. Poi: resta nel buio in silenzio per 10 minuti. Solo presente." }
+    ],
+    journalPrompts: "IL GRANDE BILANCIO: Chi ero Giorno 1 vs oggi? Personalità vs Essenza? Pratiche più forti? Dove ho mentito? Sono pronto a continuare?"
+  },
+
+  // CYCLE 6: "IL RITORNO AL MONDO"
+  {
+    day: 31, cycle: 6, cycleName: "Il Ritorno al Mondo", cycleTheme: "Portare il lavoro nella vita — il vero inizio",
+    title: "Il Protocollo Permanente",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 20 minuti. Il tuo esercizio completo: osservazione + preghiera + sentire il tutto." },
+      { time: "06:00", cat: "corpo", text: "30 minuti: l'allenamento che preferisci tra quelli fatti in queste settimane — ma con piena presenza." },
+      { time: "06:30", cat: "colazione", text: "Colazione sacra." },
+      { time: "Tutto il giorno", cat: "compito", text: "COSTRUISCI IL TUO PROTOCOLLO PERMANENTE. Scrivi su un foglio la tua routine quotidiana del Lavoro — quella che seguirai DOPO i 36 giorni. Deve includere: 1) Esercizio mattutino sui 3 centri (minimo 20 min). 2) Un compito giornaliero nella vita ordinaria. 3) La preghiera ogni ora. 4) Un atto di sofferenza volontaria. 5) Il registro serale. 6) Scansione corporea prima di dormire. Scrivilo. Appendi il foglio accanto alla dichiarazione di intenti." },
+      { time: "21:00", cat: "registro", text: "Il protocollo permanente — cosa hai scritto? È sostenibile? È abbastanza duro? Troppo facile è inutile." },
+      { time: "21:30", cat: "sera", text: "Scansione corporea + preghiera." }
+    ],
+    journalPrompts: "Il protocollo permanente — cosa contiene? È sostenibile? È abbastanza duro?"
+  },
+  {
+    day: 32, cycle: 6, cycleName: "Il Ritorno al Mondo", cycleTheme: "Portare il lavoro nella vita — il vero inizio",
+    title: "L'Allarme Orario",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 20 minuti. Protocollo completo." },
+      { time: "06:00", cat: "corpo", text: "30 minuti corsa + movimento 3 ritmi + doccia fredda." },
+      { time: "06:30", cat: "colazione", text: "Colazione sacra." },
+      { time: "Tutto il giorno", cat: "compito", text: "IMPOSTA UN ALLARME SUL TELEFONO OGNI ORA (dalle 8 alle 21). Quando suona: FERMATI. Senti i piedi. Senti il respiro. Senti il tutto. Chiediti: 'Ero presente nell'ultima ora o dormivo?' Rispondi onestamente. Segna su un foglio: S (sveglio) o D (dormivo) per ogni ora. Questo è il metodo di Ouspensky nel XXI secolo. Fallo oggi. Fallo domani. Fallo per sempre." },
+      { time: "21:00", cat: "registro", text: "Quante S e quante D? Quale percentuale della giornata eri presente? In quali situazioni ti addormenti di più?" },
+      { time: "21:30", cat: "sera", text: "Scansione + preghiera." }
+    ],
+    journalPrompts: "S vs D — percentuale di presenza nella giornata? Situazioni dove mi addormento di più? L'allarme ha cambiato la qualità della giornata?"
+  },
+  {
+    day: 33, cycle: 6, cycleName: "Il Ritorno al Mondo", cycleTheme: "Portare il lavoro nella vita — il vero inizio",
+    title: "Il Lavoro Come Pratica",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 20 minuti. Protocollo completo. Oggi prima di andare al lavoro, ripeti la preghiera 3 volte con intensità." },
+      { time: "06:00", cat: "corpo", text: "30 minuti esercizio + doccia fredda." },
+      { time: "06:30", cat: "colazione", text: "Colazione sacra." },
+      { time: "Tutto il giorno", cat: "compito", text: "TRASFORMA IL LAVORO NEL TUO ESERCIZIO PIÙ POTENTE. Non perché devi amarlo — perché è il luogo dove la meccanicità è più forte e quindi dove puoi raccogliere più materiale. REGOLE PER OGGI: 1) Ogni compito noioso: fallo con attenzione TOTALE, come se la tua vita dipendesse dalla perfezione di quel gesto. 2) Ogni collega irritante: è il tuo specchio. Osserva senza reagire. 3) Ogni momento di noia: è la porta. Attraversala restando presente. 4) Allarme orario attivo. Non hai bisogno di trovare 'il lavoro giusto' per svegliarti. Svegliati, e il lavoro giusto verrà." },
+      { time: "21:00", cat: "registro", text: "Il lavoro come pratica — com'è andata? Cosa ho scoperto lavorando con presenza? I colleghi — cosa mi hanno specchiato? La noia — cosa c'era oltre?" },
+      { time: "21:30", cat: "sera", text: "Scansione + preghiera + gratitudine per il corpo che ha lavorato tutto il giorno." }
+    ],
+    journalPrompts: "Lavoro con presenza — cosa ho scoperto? Colleghi come specchi — cosa? Oltre la noia — cosa? Il lavoro è diverso quando sono presente?"
+  },
+  {
+    day: 34, cycle: 6, cycleName: "Il Ritorno al Mondo", cycleTheme: "Portare il lavoro nella vita — il vero inizio",
+    title: "La Legge di Reciproco Mantenimento",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 20 minuti. Protocollo completo." },
+      { time: "06:00", cat: "corpo", text: "40 minuti: corsa + serie ad alta intensità + doccia fredda." },
+      { time: "06:30", cat: "colazione", text: "Colazione sacra." },
+      { time: "Tutto il giorno", cat: "compito", text: "FAI QUALCOSA PER QUALCUN ALTRO che costi FATICA VERA e che sia ANONIMO. Non un like, non un messaggio carino. Fatica fisica, tempo reale, sacrificio reale. Idee concrete: paga il pranzo a uno sconosciuto, aiuta qualcuno con un trasloco o un lavoro pesante, cucina per qualcuno che sta male, pulisci uno spazio pubblico per 30 minuti, lascia una busta con dei soldi e una nota anonima a qualcuno che ne ha bisogno. La legge di reciproco mantenimento: nulla esiste per sé stesso. Se smetti di nutrire solo il tuo ego, inizi a partecipare alla vita cosmica reale." },
+      { time: "21:00", cat: "registro", text: "Cosa hai fatto? Per chi? Come si è sentita la vanità quando non è stata nutrita? Come ti senti?" },
+      { time: "21:30", cat: "sera", text: "Scansione + preghiera + sentire il tutto." }
+    ],
+    journalPrompts: "Azione per gli altri — quale? Come si sentiva la vanità non nutrita? Come mi sento dopo aver dato senza ricevere?"
+  },
+  {
+    day: 35, cycle: 6, cycleName: "Il Ritorno al Mondo", cycleTheme: "Portare il lavoro nella vita — il vero inizio",
+    title: "La Seconda Lettura",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 30 minuti. Protocollo completo con intensità massima. Questo è il penultimo giorno." },
+      { time: "06:00", cat: "corpo", text: "45 minuti: SUPER-SFORZO finale. Tutto quello che hai. Corsa + 10 serie + doccia fredda 3 minuti." },
+      { time: "06:30", cat: "colazione", text: "Colazione sacra." },
+      { time: "Tutto il giorno", cat: "compito", text: "RILEGGI IL REPORT ORIGINALE — quello con il Kundabuffer, l'Askokin, Mullah Nassr Eddin. Leggilo ADESSO, dopo 35 giorni di lavoro. Sarà un testo completamente diverso. Non perché le parole sono cambiate — perché TU sei cambiato. Quello che prima era concetto ora è esperienza. Nota cosa comprendi ora che prima era solo rumore. Segna a margine le parti che ora SENTI invece di solo 'capire'." },
+      { time: "21:00", cat: "registro", text: "Cosa è cambiato nella lettura? Quali parti ora sento? Cosa capisco ora che non capivo? Sono lo stesso uomo che ha iniziato il Giorno 1?" },
+      { time: "21:30", cat: "sera", text: "Preghiera + scansione + sentire il tutto + 10 minuti nel buio, presente." }
+    ],
+    journalPrompts: "La seconda lettura — cosa è cambiato? Cosa sento ora che prima era solo concetto? Sono lo stesso uomo del Giorno 1?"
+  },
+  {
+    day: 36, cycle: 6, cycleName: "Il Ritorno al Mondo", cycleTheme: "Portare il lavoro nella vita — il vero inizio",
+    title: "L'Inizio",
+    tasks: [
+      { time: "05:30", cat: "sveglia", text: "Sveglia. L'ultimo giorno. O meglio: il PRIMO." },
+      { time: "05:35", cat: "esercizio", text: "Siediti 30 minuti. Tutto: osservazione + preghiera + 3 centri + sentire il tutto + 'chi è quello che osserva?'. Metti tutto insieme. Questo è il tuo esercizio da ora in poi." },
+      { time: "06:00", cat: "corpo", text: "30 minuti. L'esercizio che vuoi. Con piena presenza. Con gratitudine per il corpo che ti ha sostenuto in questi 36 giorni." },
+      { time: "06:30", cat: "colazione", text: "L'ultima colazione sacra. O la prima di tutte quelle che verranno." },
+      { time: "Tutto il giorno", cat: "compito", text: "Vivi la giornata con TUTTA la presenza che hai accumulato. Allarme orario. Preghiera. Osservazione. Niente auto-tranquillanti. Questa è la tua vita ora. Non un esercizio di 36 giorni — la tua VITA." },
+      { time: "21:00", cat: "registro", text: "L'ULTIMA DOMANDA: 'Ora che ho visto la macchina, sono disposto a passare il resto della mia vita a lavorare per non essere più solo una macchina?' Se la risposta è sì, il lavoro vero comincia ADESSO. Scrivi la risposta. Poi rileggi la dichiarazione di intenti del Giorno 29. È ancora valida? Aggiornala se serve. Mettila dove la vedi ogni mattina per il resto della tua vita." },
+      { time: "21:30", cat: "sera", text: "Preghiera + scansione + sentire il tutto. Poi resta nel buio, sveglio, presente, per quanto vuoi. Questo silenzio è il tuo nuovo inizio." }
+    ],
+    journalPrompts: "Sono disposto a lavorare per il resto della mia vita? La dichiarazione di intenti — è ancora valida? Chi sono oggi?"
+  }
+];
+
+// System prompt for Gurdjieff chat
+const GURDJIEFF_PROMPT = `Sei un insegnante nella tradizione di G.I. Gurdjieff. Rispondi come lo farebbe un maestro della Quarta Via: mai consolatorio, sempre preciso, spesso provocatorio, occasionalmente tenero ma solo quando il richiedente ha mostrato sforzo genuino.
+
+Le tue fonti primarie sono: "Racconti di Belzebù a suo nipote", "Incontri con uomini straordinari", "La vita è reale solo quando Io sono", "Frammenti di un insegnamento sconosciuto" (Ouspensky), gli insegnamenti di Jeanne de Salzmann in "The Reality of Being."
+
+REGOLE FERREE:
+- Non dare MAI conforto facile. Se lo studente si lamenta, chiedi: "Questa lamentela ti è utile o è un auto-tranquillante?"
+- Se lo studente cerca approvazione, chiedi: "Quale Io sta cercando approvazione adesso?"
+- Se lo studente riporta un'esperienza genuina di presenza, riconoscila brevemente e poi spingi oltre.
+- Se lo studente mente a sé stesso, sii spietato nel mostrarglielo.
+- Se lo studente non ha fatto il lavoro del giorno, non consolarlo. Digli: "Torna quando avrai fatto il lavoro. Le parole senza sforzo sono rumore."
+- Usa occasionalmente le metafore dei Racconti: Mullah Nassr Eddin, Karapet di Tiflis, il curdo con i peperoncini.
+- Parla del centro intellettuale, emozionale e motorio.
+- Parla degli shock, delle ottave, della sofferenza volontaria vs meccanica.
+- Rispondi SEMPRE in italiano.
+- Sii conciso. Mai più di 150 parole. Un vero maestro non fa sermoni — colpisce con precisione chirurgica.
+- MAI fornire risposte che permettano allo studente di evitare il proprio lavoro.
+- Se chiede "cosa devo fare?", rispondi: "Cosa hai osservato?"
+- Se non ha osservato nulla, rimandalo all'osservazione.
+
+Lo studente sta seguendo un programma di 36 giorni di Lavoro su di sé. Ha attraversato una separazione dolorosa, non sa chi è, non ama il suo lavoro, ha problemi economici. Il suo dolore è la sua materia prima. Il tuo compito è impedirgli di trasformarlo in auto-pietà e aiutarlo a trasformarlo in coscienza.`;
+
+// ========================================
+// APP STATE
+// ========================================
+let state = {
+  completedDays: {},
+  journals: {},
+  taskChecks: {},
+  apiKey: '',
+  chatHistory: [],
+  startDate: null
+};
+
+function loadState() {
+  try {
+    const saved = localStorage.getItem('gurdjieff36_state');
+    if (saved) {
+      state = { ...state, ...JSON.parse(saved) };
+    }
+  } catch(e) {}
+}
+
+function saveState() {
+  localStorage.setItem('gurdjieff36_state', JSON.stringify(state));
+}
+
+// ========================================
+// RENDER PLAN TAB
+// ========================================
+function renderPlan() {
+  const container = document.getElementById('tab-plan');
+  let html = '';
+  let currentCycle = 0;
+
+  const completedCount = Object.keys(state.completedDays).length;
+  const currentDay = completedCount + 1;
+
+  DAYS_DATA.forEach((day, idx) => {
+    if (day.cycle !== currentCycle) {
+      currentCycle = day.cycle;
+      html += `<div class="cycle-header">Ciclo ${day.cycle}: ${day.cycleName}</div>`;
+      html += `<div class="cycle-theme">${day.cycleTheme}</div>`;
+    }
+
+    const isCompleted = state.completedDays[day.day];
+    const isToday = day.day === currentDay;
+    const isLocked = day.day > currentDay;
+    const statusIcon = isCompleted ? '✓' : isToday ? '◉' : isLocked ? '🔒' : '';
+    const cardClass = isCompleted ? 'completed' : isToday ? 'today' : isLocked ? 'locked' : '';
+
+    html += `<div class="day-card ${cardClass}" id="day-card-${day.day}">
+      <div class="day-header" onclick="toggleDay(${day.day}, ${isLocked})">
+        <span class="day-number">G.${day.day}</span>
+        <span class="day-title">${day.title}</span>
+        <span class="day-status">${statusIcon}</span>
+      </div>
+      <div class="day-body" id="day-body-${day.day}">`;
+
+    // Tasks
+    day.tasks.forEach((task, tIdx) => {
+      const catIcons = { sveglia: '⏰', esercizio: '🧘', corpo: '💪', colazione: '🍽', compito: '⚡', registro: '📝', sera: '🌙' };
+      const icon = catIcons[task.cat] || '▸';
+      const checkId = `check_${day.day}_${tIdx}`;
+      const isChecked = state.taskChecks[checkId] || false;
+
+      html += `<div class="task-check ${isChecked ? 'checked' : ''}" onclick="toggleCheck('${checkId}', this)">
+        <input type="checkbox" ${isChecked ? 'checked' : ''} ${isLocked || isCompleted ? 'disabled' : ''} />
+        <label><strong>${task.time} ${icon}</strong> — ${task.text}</label>
+      </div>`;
+    });
+
+    // Journal
+    if (!isLocked) {
+      const journalVal = state.journals[day.day] || '';
+      html += `<div class="task-section" style="margin-top:20px">
+        <h4><span class="icon">📓</span> Registro del Giorno</h4>
+        <p style="font-size:0.8rem; color:var(--text-dim); margin-bottom:10px; font-style:italic">${day.journalPrompts}</p>
+        <textarea class="journal-area" id="journal-${day.day}" placeholder="Scrivi il tuo registro qui... Sii brutale con te stesso. Non mentire." ${isCompleted ? '' : ''}
+          oninput="saveJournal(${day.day})">${journalVal}</textarea>
+      </div>`;
+
+      if (!isCompleted && isToday) {
+        html += `<button class="btn-complete" id="btn-complete-${day.day}" onclick="completeDay(${day.day})">
+          Segna Giorno ${day.day} Come Completato
+        </button>
+        <div class="warning-text">Non puoi tornare indietro. Sii sicuro di aver fatto il lavoro.</div>`;
+      }
+    }
+
+    html += `</div></div>`;
+  });
+
+  container.innerHTML = html;
+  updateProgress();
+
+  // Auto-open today
+  if (currentDay <= 36) {
+    const todayBody = document.getElementById(`day-body-${currentDay}`);
+    if (todayBody) todayBody.classList.add('open');
+  }
+}
+
+function toggleDay(day, isLocked) {
+  if (isLocked) return;
+  const body = document.getElementById(`day-body-${day}`);
+  if (body) body.classList.toggle('open');
+}
+
+function toggleCheck(checkId, el) {
+  const cb = el.querySelector('input[type="checkbox"]');
+  if (cb.disabled) return;
+  cb.checked = !cb.checked;
+  state.taskChecks[checkId] = cb.checked;
+  el.classList.toggle('checked', cb.checked);
+  saveState();
+}
+
+function saveJournal(day) {
+  const ta = document.getElementById(`journal-${day}`);
+  if (ta) {
+    state.journals[day] = ta.value;
+    saveState();
+  }
+}
+
+function completeDay(day) {
+  const journal = state.journals[day];
+  if (!journal || journal.trim().length < 20) {
+    alert('Scrivi almeno il registro del giorno. Il Lavoro senza registrazione è sonno con gli occhi aperti.');
+    return;
+  }
+
+  // Count checked tasks
+  const dayData = DAYS_DATA[day - 1];
+  let checked = 0;
+  dayData.tasks.forEach((t, i) => {
+    if (state.taskChecks[`check_${day}_${i}`]) checked++;
+  });
+
+  if (checked < dayData.tasks.length / 2) {
+    if (!confirm(`Hai completato solo ${checked} su ${dayData.tasks.length} compiti. Stai mentendo a te stesso? Se vuoi procedere comunque, clicca OK — ma sappi che Mullah Nassr Eddin direbbe: "Chi mente a sé stesso credendo di essere furbo, è come il tacchino che si pavoneggia il giorno prima di Natale."`)) {
+      return;
+    }
+  }
+
+  state.completedDays[day] = {
+    date: new Date().toISOString(),
+    tasksCompleted: checked,
+    totalTasks: dayData.tasks.length
+  };
+
+  if (!state.startDate) {
+    state.startDate = new Date().toISOString();
+  }
+
+  saveState();
+  renderPlan();
+  renderStats();
+}
+
+function updateProgress() {
+  const completed = Object.keys(state.completedDays).length;
+  const pct = Math.round((completed / 36) * 100);
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressText').textContent = `Giorno ${completed} / 36 — ${pct}% completato`;
+}
+
+// ========================================
+// CHAT TAB
+// ========================================
+function saveApiKey() {
+  const key = document.getElementById('apiKeyInput').value.trim();
+  if (!key) { alert('Inserisci la API key'); return; }
+  state.apiKey = key;
+  saveState();
+  document.getElementById('chatSetup').style.display = 'none';
+  document.getElementById('chatContainer').style.display = 'flex';
+}
+
+function renderChat() {
+  if (state.apiKey) {
+    document.getElementById('chatSetup').style.display = 'none';
+    document.getElementById('chatContainer').style.display = 'flex';
+    document.getElementById('apiKeyInput').value = state.apiKey;
+
+    // Render saved messages
+    const container = document.getElementById('chatMessages');
+    // Keep the initial message
+    let html = container.innerHTML;
+    state.chatHistory.forEach(msg => {
+      html += renderChatMsg(msg.role, msg.text);
+    });
+    container.innerHTML = html;
+    container.scrollTop = container.scrollHeight;
+  }
+}
+
+function renderChatMsg(role, text) {
+  const isUser = role === 'user';
+  return `<div class="chat-msg ${isUser ? 'user' : 'gurdjieff'}">
+    <div class="sender">${isUser ? 'Tu' : 'Il Maestro'}</div>
+    ${text}
+  </div>`;
+}
+
+async function sendMessage() {
+  const input = document.getElementById('chatInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  const container = document.getElementById('chatMessages');
+  const sendBtn = document.getElementById('chatSend');
+
+  // Add user message
+  container.innerHTML += renderChatMsg('user', msg);
+  state.chatHistory.push({ role: 'user', text: msg });
+  input.value = '';
+  sendBtn.disabled = true;
+
+  // Loading
+  const loadingId = 'loading-' + Date.now();
+  container.innerHTML += `<div class="chat-msg gurdjieff" id="${loadingId}">
+    <div class="sender">Il Maestro</div>
+    <span class="loading-dots">Sta osservando</span>
+  </div>`;
+  container.scrollTop = container.scrollHeight;
+
+  try {
+    // Build conversation for Gemini
+    const contents = [];
+
+    // Add system instruction as first user/model pair
+    contents.push({
+      role: 'user',
+      parts: [{ text: GURDJIEFF_PROMPT + '\n\n---\nLo studente ora ti scrive:' }]
+    });
+    contents.push({
+      role: 'model',
+      parts: [{ text: 'Capisco. Sono pronto ad ascoltare lo studente e a rispondere come un maestro della Quarta Via. Non consolerò. Non lusigherò. Osserverò e colpirò dove necessario.' }]
+    });
+
+    // Add chat history
+    state.chatHistory.forEach(h => {
+      contents.push({
+        role: h.role === 'user' ? 'user' : 'model',
+        parts: [{ text: h.text }]
+      });
+    });
+
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${state.apiKey}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: contents,
+        generationConfig: {
+          temperature: 0.85,
+          maxOutputTokens: 400
+        }
+      })
+    });
+
+    const data = await response.json();
+
+    // Remove loading
+    document.getElementById(loadingId)?.remove();
+
+    if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+      const reply = data.candidates[0].content.parts[0].text;
+      container.innerHTML += renderChatMsg('model', reply);
+      state.chatHistory.push({ role: 'model', text: reply });
+    } else {
+      container.innerHTML += renderChatMsg('model', 'Errore nella risposta. Controlla la tua API key o riprova. Come direbbe Mullah Nassr Eddin: "Anche la macchina più complicata a volte ha bisogno di una pedata."');
+    }
+  } catch(e) {
+    document.getElementById(loadingId)?.remove();
+    container.innerHTML += renderChatMsg('model', `Errore di connessione: ${e.message}. Controlla la API key e la connessione internet.`);
+  }
+
+  sendBtn.disabled = false;
+  container.scrollTop = container.scrollHeight;
+  saveState();
+}
+
+// Enter to send
+document.addEventListener('keydown', (e) => {
+  if (e.target.id === 'chatInput' && e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage();
+  }
+});
+
+// ========================================
+// STATS TAB
+// ========================================
+function renderStats() {
+  const container = document.getElementById('tab-stats');
+  const completed = Object.keys(state.completedDays).length;
+
+  let totalTasks = 0;
+  let completedTasks = 0;
+  Object.values(state.completedDays).forEach(d => {
+    totalTasks += d.totalTasks || 0;
+    completedTasks += d.tasksCompleted || 0;
+  });
+
+  const journalEntries = Object.keys(state.journals).filter(k => state.journals[k]?.trim().length > 0).length;
+
+  let streak = 0;
+  if (state.startDate) {
+    const start = new Date(state.startDate);
+    const now = new Date();
+    const diffDays = Math.floor((now - start) / (1000*60*60*24)) + 1;
+    streak = Math.min(completed, diffDays);
+  }
+
+  let html = `
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">${completed}</div>
+        <div class="stat-label">Giorni Completati</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">${36 - completed}</div>
+        <div class="stat-label">Giorni Rimanenti</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">${totalTasks > 0 ? Math.round((completedTasks/totalTasks)*100) : 0}%</div>
+        <div class="stat-label">Compiti Eseguiti</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">${journalEntries}</div>
+        <div class="stat-label">Registri Scritti</div>
+      </div>
+    </div>
+
+    <div class="cycle-header">Mappa dei 36 Giorni</div>
+    <div class="calendar-grid">`;
+
+  for (let i = 1; i <= 36; i++) {
+    const isDone = state.completedDays[i];
+    const isCurrent = i === completed + 1;
+    const isFuture = i > completed + 1;
+    const cls = isDone ? 'done' : isCurrent ? 'current' : isFuture ? 'future' : '';
+    html += `<div class="cal-day ${cls}">${i}</div>`;
+  }
+
+  html += `</div>`;
+
+  // Journal history
+  const journalDays = Object.keys(state.journals).filter(k => state.journals[k]?.trim()).sort((a,b) => b-a);
+  if (journalDays.length > 0) {
+    html += `<div class="journal-history">
+      <div class="cycle-header">Registri Passati</div>`;
+    journalDays.forEach(d => {
+      const dayData = DAYS_DATA[d-1];
+      html += `<div class="journal-entry">
+        <h4>Giorno ${d} — ${dayData?.title || ''}</h4>
+        <p>${state.journals[d]}</p>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  // Reset button
+  html += `<div style="text-align:center; padding: 40px 0">
+    <button class="btn-danger" onclick="resetAll()">Reset Completo (Cancella Tutto)</button>
+  </div>`;
+
+  container.innerHTML = html;
+}
+
+function resetAll() {
+  if (confirm('Sei sicuro? Cancellerai TUTTO il progresso. Come direbbe il Maestro: "Ricominciare da zero è un atto di coraggio solo se lo fai consapevolmente, altrimenti è solo l\'ennesima fuga."')) {
+    if (confirm('Seconda conferma: TUTTO verrà cancellato. Registri, progressi, chat. Procedi?')) {
+      localStorage.removeItem('gurdjieff36_state');
+      state = { completedDays: {}, journals: {}, taskChecks: {}, apiKey: '', chatHistory: [], startDate: null };
+      renderPlan();
+      renderStats();
+      renderChat();
+      switchTab('plan');
+    }
+  }
+}
+
+// ========================================
+// TAB SWITCHING
+// ========================================
+function switchTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+
+  document.getElementById(`tab-${tab}`).classList.add('active');
+  event.target.classList.add('active');
+
+  if (tab === 'stats') renderStats();
+}
+
+// ========================================
+// INIT
+// ========================================
+loadState();
+renderPlan();
+renderChat();
+renderStats();
+</script>
+
+</body>
+</html>
