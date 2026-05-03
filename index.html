@@ -618,9 +618,9 @@
   <!-- TAB: CHAT -->
   <div class="tab-content" id="tab-chat">
     <div class="chat-setup" id="chatSetup">
-      <label>La tua API Key di Gemini</label>
+      <label>La tua API Key di Gemini (FREE)</label>
       <input type="password" id="apiKeyInput" placeholder="Incolla qui la tua API key..." />
-      <div class="note">Vai su <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:var(--gold-dim)">aistudio.google.com</a> per ottenerne una gratuita. La chiave resta salvata solo nel tuo browser.</div>
+      <div class="note">IMPORTANTE: usa SOLO una chiave creata su <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:var(--gold-dim)">aistudio.google.com</a> (NON console.cloud.google.com). Le chiavi AI Studio sono gratuite. La chiave resta salvata solo nel tuo browser.</div>
       <button class="btn-complete" style="margin-top:12px" onclick="saveApiKey()">Salva e Inizia</button>
     </div>
     <div class="chat-container" id="chatContainer" style="display:none">
@@ -1421,16 +1421,6 @@ async function sendMessage() {
     // Build conversation for Gemini
     const contents = [];
 
-    // Add system instruction as first user/model pair
-    contents.push({
-      role: 'user',
-      parts: [{ text: GURDJIEFF_PROMPT + '\n\n---\nLo studente ora ti scrive:' }]
-    });
-    contents.push({
-      role: 'model',
-      parts: [{ text: 'Capisco. Sono pronto ad ascoltare lo studente e a rispondere come un maestro della Quarta Via. Non consolerò. Non lusigherò. Osserverò e colpirò dove necessario.' }]
-    });
-
     // Add chat history
     state.chatHistory.forEach(h => {
       contents.push({
@@ -1439,10 +1429,13 @@ async function sendMessage() {
       });
     });
 
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${state.apiKey}`, {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${state.apiKey}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
+        systemInstruction: {
+          parts: [{ text: GURDJIEFF_PROMPT }]
+        },
         contents: contents,
         generationConfig: {
           temperature: 0.7,
